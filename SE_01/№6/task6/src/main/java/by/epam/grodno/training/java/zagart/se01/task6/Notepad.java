@@ -1,5 +1,9 @@
 package by.epam.grodno.training.java.zagart.se01.task6;
 
+/**
+ * Main class with entry point which use Notes.class opportunities.
+ *
+ */
 public class Notepad {
 	public static void main(String[] args) {
 		Notes obj = new Notes();

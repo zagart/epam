@@ -3,11 +3,24 @@ package by.epam.grodno.training.java.zagart.se01.task7;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Pen obj = new Pen(10, "Greed", "Black");
-		Pen obj1 = new Pen(10, "Greed", "Black");
+		
+		Pen obj = new Pen(10, "зеленый", "синий");
+		Pen obj1 = new Pen(10, "зеленый", "синий");
+		Pen obj2 = new Pen(8, "красный", "черный");
+		
 		System.out.println(obj.equals(obj1));
+		System.out.println(obj.hashCode());
+		System.out.println(obj1.hashCode());
 		System.out.println(obj);
+		System.out.println(obj1);
+		
+		System.out.println();
+		
+		System.out.println(obj1.equals(obj2));
+		System.out.println(obj1.hashCode());
+		System.out.println(obj2.hashCode());
+		System.out.println(obj1);
+		System.out.println(obj2);
 	}
 
 }

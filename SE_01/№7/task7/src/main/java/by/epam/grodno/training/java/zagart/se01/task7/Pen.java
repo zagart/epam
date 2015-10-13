@@ -7,8 +7,17 @@ public class Pen {
 	private String incColor;
 	
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + ((incColor == null) ? 0 : incColor.hashCode());
+		result = prime * result + size;
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
-		System.out.print("Отработал метод equals(); ");
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -16,11 +25,17 @@ public class Pen {
 		if (getClass() != obj.getClass())
 			return false;
 		Pen other = (Pen) obj;
+		if (color == null) {
+			if (other.color != null)
+				return false;
+		} else if (!color.equals(other.color))
+			return false;
+		if (incColor == null) {
+			if (other.incColor != null)
+				return false;
+		} else if (!incColor.equals(other.incColor))
+			return false;
 		if (size != other.size)
-			return false;
-		if (color != other.color)
-			return false;
-		if (incColor != other.incColor)
 			return false;
 		return true;
 	}
@@ -32,14 +47,8 @@ public class Pen {
 	}
 
 	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-
-	@Override
 	public String toString() {
-		return "Отработал метод toString(); Ручка имеет размер " + size + " см, цвет - " + color +
+		return "Ручка имеет размер " + size + " см, цвет - " + color +
 				", цвет чернил - " + incColor + ".";
 	}
 	

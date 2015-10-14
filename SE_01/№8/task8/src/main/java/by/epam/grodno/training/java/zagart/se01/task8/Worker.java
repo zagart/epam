@@ -12,6 +12,15 @@ public class Worker {
 		this.name = name;
 	}
 	
+	public void checkStationery () {
+		System.out.println("У работника " + getName() + 
+				" есть: ");
+		if (stationery.pen.getValue() != 0) System.out.println("- ручка;");
+		if (stationery.pensil.getValue() != 0) System.out.println("- карандаш;");
+		if (stationery.eraser.getValue() != 0) System.out.println("- ластик;");
+		if (stationery.ruler.getValue() != 0) System.out.println("- линейка;");
+	}
+	
 	public Worker (String name, int pen, int pensil, int eraser, int ruler) {
 		this.name = name;
 		stationery.pen.setValue(pen);
@@ -23,9 +32,6 @@ public class Worker {
 	public Worker () {
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Имя работника - " + name + 

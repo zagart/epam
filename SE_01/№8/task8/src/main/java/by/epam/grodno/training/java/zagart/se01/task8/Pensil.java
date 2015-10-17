@@ -1,22 +1,28 @@
 package by.epam.grodno.training.java.zagart.se01.task8;
 
-public class Pensil {
-	private int value = 0;
+public class Pensil extends Stationery {
 
-	public int getValue() {
-		return value;
+	private String type = null;
+
+	public String getType() {
+		return type;
 	}
 
-public void setValue(int value) {
-		this.value = value;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-public Pensil(int value) {
-	super();
-	this.value = value;
-}
-
-public Pensil() {
-}
+	public Pensil(int value, int quantity, String type) {
+		super(value, quantity);
+		this.type = type;
+	}
+	
+	public Pensil(int value, int quantity) {
+		super(value, quantity);
+	}
+	
+	public Pensil() {
+		
+	}
 
 }

@@ -1,22 +1,28 @@
 package by.epam.grodno.training.java.zagart.se01.task8;
 
-public class Eraser {
-	private int value = 0;
+public class Eraser extends Stationery {
 
-	public int getValue() {
-		return value;
+	private String color = null;
+
+	public String getColor() {
+		return color;
 	}
 
-public void setValue(int value) {
-		this.value = value;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
-public Eraser(int value) {
-	super();
-	this.value = value;
-}
-
-public Eraser() {
-}
+	public Eraser(int value, int quantity, String color) {
+		super(value, quantity);
+		this.color = color;
+	}
+	
+	public Eraser(int value, int quantity) {
+		super(value, quantity);
+	}
+	
+	public Eraser() {
+		
+	}
 
 }

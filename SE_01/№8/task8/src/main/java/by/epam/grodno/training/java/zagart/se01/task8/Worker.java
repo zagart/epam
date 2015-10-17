@@ -1,8 +1,24 @@
 package by.epam.grodno.training.java.zagart.se01.task8;
 
 public class Worker {
-	public Stationery stationery = new Stationery();
+	
 	private String name;
+	Pen pen = new Pen();
+	Pensil pensil = new Pensil();
+	Ruler ruler = new Ruler();
+	Eraser eraser = new Eraser();
+	
+	public void getStationery() {
+		
+		int totalValue = 0;
+		
+		if (pen != null) totalValue += pen.getValue() * pen.getQuantity();
+		if (pensil != null) totalValue += pensil.getValue() * pensil.getQuantity();
+		if (eraser != null) totalValue += eraser.getValue() * eraser.getQuantity();
+		if (ruler != null) totalValue += ruler.getValue() * ruler.getQuantity();
+		
+		System.out.println("Общая стоимость канцтоваров у сотрудника " + name + ": " + totalValue + ".");
+	}
 
 	public String getName() {
 		return name;
@@ -11,35 +27,23 @@ public class Worker {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public void checkStationery () {
-		System.out.println("У работника " + getName() + 
-				" есть: ");
-		if (stationery.pen.getValue() != 0) System.out.println("- ручка;");
-		if (stationery.pensil.getValue() != 0) System.out.println("- карандаш;");
-		if (stationery.eraser.getValue() != 0) System.out.println("- ластик;");
-		if (stationery.ruler.getValue() != 0) System.out.println("- линейка;");
-	}
-	
-	public Worker (String name, int pen, int pensil, int eraser, int ruler) {
+
+	public Worker(String name, Pen pen, Pensil pensil, Ruler ruler, Eraser eraser) {
+		super();
 		this.name = name;
-		stationery.pen.setValue(pen);
-		stationery.pensil.setValue(pensil);
-		stationery.eraser.setValue(eraser);
-		stationery.ruler.setValue(ruler);
-	}
-	
-	public Worker () {
+		this.pen = pen;
+		this.pensil = pensil;
+		this.ruler = ruler;
+		this.eraser = eraser;
 	}
 
-	@Override
-	public String toString() {
-		return "Имя работника - " + name + 
-				". Общая стоимость канцтоваров на рабочем месте - " + 
-				(int)(stationery.pen.getValue() + stationery.pensil.getValue() +
-						stationery.eraser.getValue() + stationery.ruler.getValue()) + "." ;
+	public Worker(String name) {
+		super();
+		this.name = name;
 	}
-	
-	
+
+	public Worker() {
+
+	}
+
 }
-

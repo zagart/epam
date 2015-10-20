@@ -1,0 +1,19 @@
+package by.epam.grodno.training.java.zagart.se02.task2;
+
+import java.util.LinkedList;
+
+public class NewbieKit <CLASS extends Stationery> {
+	
+	LinkedList<Stationery> list = new LinkedList<Stationery>();
+	
+	public void addStationery (CLASS obj) {
+		list.add((Stationery) obj);
+	}
+	
+	public void getList() {
+		for (Stationery i : list) {
+			System.out.println(i.getName());
+		}
+	}
+
+}

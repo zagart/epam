@@ -42,7 +42,7 @@ abstract public class Stationery {
 	
 	@Override
 	public String toString() {
-		return getDescription();
+		return this.getName() + ". Стоимость: " + this.getCost() + " руб. " + getDescription();
 	}
 	
 }

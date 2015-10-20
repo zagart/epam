@@ -11,15 +11,13 @@ public class Pen extends Writing {
 	public void setInkColor(String inkColor) {
 		this.inkColor = inkColor;
 	}
+	
+	public Pen() {
+		super();
+	}
 
 	public Pen(String name, int cost) {
 		super(name, cost);
 	}
 	
-	public Pen() {
-		
-	}
-	
-	
-
 }

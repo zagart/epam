@@ -10,7 +10,7 @@ public class NewbieKit <CLASS extends Stationery> {
 		list.add((Stationery) obj);
 	}
 	
-	public void getList() {
+	public void getStationeryList() {
 		for (Stationery i : list) {
 			System.out.println(i.getName());
 		}

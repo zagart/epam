@@ -37,11 +37,7 @@ public class Main {
 		sortMethod(newbieKit, byName);
 		
 		System.out.println("Sorted by price:");
-		sortMethod(newbieKit, byPrice);
-		
-		System.out.println("Sorted by name and by price:");
-		sortMethod(newbieKit, byName);
-		
+		sortMethod(newbieKit, byPrice);		
 	
 	}
 	

@@ -4,18 +4,18 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		NewbieKit<Stationery> obj = new NewbieKit<Stationery>();
+		Kit<Stationery> newbieKit = new Kit<Stationery>();
 		
-		obj.addStationery(new Pen("Ручка MAXWELL", 1000));
-		obj.addStationery(new Pensil("Карандаш Tone", 500));
-		obj.addStationery(new Pen("Ручка TUKZAR", 3000));
+		newbieKit.addStationery(new Pen("Ручка MAXWELL", 1000));
+		newbieKit.addStationery(new Pensil("Карандаш Tone", 500));
+		newbieKit.addStationery(new Pen("Ручка TUKZAR", 3000));
 		Ruler ruler = new Ruler();
 		ruler.setName("Линейка TUKZAR");
 		ruler.setCost(5000);
 		ruler.setLength(10);
-		obj.addStationery(ruler);
+		newbieKit.addStationery(ruler);
 		
-		obj.getStationeryList();
+		newbieKit.getStationeryList();
 		
 		System.out.println();
 		System.out.println(ruler);

@@ -2,7 +2,7 @@ package by.epam.grodno.training.java.zagart.se02.task2;
 
 import java.util.LinkedList;
 
-public class NewbieKit <CLASS extends Stationery> {
+public class Kit <CLASS extends Stationery> {
 	
 	LinkedList<Stationery> list = new LinkedList<Stationery>();
 	

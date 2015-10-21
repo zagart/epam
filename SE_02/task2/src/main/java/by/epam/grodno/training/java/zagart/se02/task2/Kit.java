@@ -15,5 +15,13 @@ public class Kit <CLASS extends Stationery> {
 			System.out.println(i.getName());
 		}
 	}
+	
+	public void getKitCost() {
+		int sum = 0;
+		for (Stationery i : list) {
+			sum += i.getCost();
+		}
+		System.out.println("Стоимость набора: " + sum + " руб.");
+	}
 
 }

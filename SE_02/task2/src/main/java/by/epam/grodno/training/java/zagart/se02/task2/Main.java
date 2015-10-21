@@ -1,5 +1,9 @@
 package by.epam.grodno.training.java.zagart.se02.task2;
 
+import by.epam.grodno.training.java.zagart.se02.task2.office.Ruler;
+import by.epam.grodno.training.java.zagart.se02.task2.writing.Pen;
+import by.epam.grodno.training.java.zagart.se02.task2.writing.Pensil;
+
 public class Main {
 
 	public static void main(String[] args) {

@@ -1,4 +1,6 @@
-package by.epam.grodno.training.java.zagart.se02.task2;
+package by.epam.grodno.training.java.zagart.se02.task2.office;
+
+import by.epam.grodno.training.java.zagart.se02.task2.Stationery;
 
 abstract public class OfficeInstruments extends Stationery {
 	

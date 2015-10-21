@@ -1,4 +1,4 @@
-package by.epam.grodno.training.java.zagart.se02.task2;
+package by.epam.grodno.training.java.zagart.se02.task2.office;
 
 public class Ruler extends OfficeInstruments {
 
@@ -19,7 +19,5 @@ public class Ruler extends OfficeInstruments {
 	public Ruler(String name, int cost) {
 		super(name, cost);
 	}
-	
-	
 	
 }

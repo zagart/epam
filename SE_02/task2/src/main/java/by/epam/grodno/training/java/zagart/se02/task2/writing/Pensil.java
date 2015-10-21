@@ -1,4 +1,4 @@
-package by.epam.grodno.training.java.zagart.se02.task2;
+package by.epam.grodno.training.java.zagart.se02.task2.writing;
 
 public class Pensil extends Writing {
 

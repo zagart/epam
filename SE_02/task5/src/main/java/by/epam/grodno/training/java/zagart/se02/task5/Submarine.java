@@ -3,11 +3,14 @@ package by.epam.grodno.training.java.zagart.se02.task5;
 public class Submarine {
 
 	private boolean isMoving = false;
+	private Hull hull = new Hull();
 	private Engine engine = new Engine();
+	private Reactor reactor = new Reactor();
+	private Weaponry weaponry = new Weaponry();
 	
 	public void checkStatus() {
-		if (isMoving) System.out.println("Лодка плывет."); 
-		else System.out.println("Лодка не движется.");
+		if (isMoving) System.out.println("Атомная подводная лодка в плавании."); 
+		else System.out.println("Атомная подводная лодка не движется.");
 	}
 	
 	public void Start() {
@@ -29,6 +32,18 @@ public class Submarine {
 			isMoving = false;
 		}
 			
+	}
+	
+	public class Hull {
+		
+	}
+	
+	public class Reactor {
+		
+	}
+	
+	public class Weaponry {
+		
 	}
 	
 }

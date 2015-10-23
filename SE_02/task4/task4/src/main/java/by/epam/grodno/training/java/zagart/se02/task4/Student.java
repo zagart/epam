@@ -4,7 +4,7 @@ public class Student {
 
 	private String name = null;
 	private String secondName = null;
-
+	
 	public String getName() {
 		return name;
 	}
@@ -20,7 +20,7 @@ public class Student {
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
 	}
-
+	
 	public Student(String name, String secondName) {
 		super();
 		this.name = name;
@@ -33,7 +33,7 @@ public class Student {
 		
 	@Override
 	public String toString() {
-		return secondName + " " + name + ".";
+		return String.format("%s %s ", name, secondName);
 	}
 
 	@Override

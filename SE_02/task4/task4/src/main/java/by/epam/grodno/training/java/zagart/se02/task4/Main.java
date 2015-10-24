@@ -2,50 +2,45 @@ package by.epam.grodno.training.java.zagart.se02.task4;
 
 import static by.epam.grodno.training.java.zagart.se02.task4.Util.*;
 
-import java.util.ArrayList;
-
 public class Main {
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void main(String[] args) {
 
-		
-		Group group = createGroupIntegerMarks("New Group", Subject.ENG);
+		Group group = createGroupFloatMarks("New Group", Subject.ENG);
 		Group group1 = createGroupIntegerMarks("Группа №1", Subject.PHYS);
 		Group group2 = createGroupFloatMarks("Группа №2", Subject.MATH);
 
-		
 		Student student = new Student("Артем", "Загребанцев");
-		group.addStudent(student);
-		group.addStudentMark(student, 10);
-		group.addStudentMark(student, 10);
-		group.addStudentMark(student, 10);
-		group.addStudentMark(student, 10);
-		group.addStudentMark(student, 10);
-
-		
-		group1.addRandomStudents(9);
-		group1.printStudents();
-
-		
-		group2.addRandomStudents(9);
-		countAverageMarks(group2);
-		group2.printStudents();
-
-		
 		group.addRandomStudents(9);
 		countAverageMarks(group);
 		group.printStudents();
 
-		
-		getGroupsByStudent(student);
+		group1.addRandomStudents(9);
+		group1.addStudent(student);
+		group1.addStudentMark(student, 10);
+		group1.addStudentMark(student, 10);
+		group1.addStudentMark(student, 10);
+		group1.addStudentMark(student, 10);
+		group1.addStudentMark(student, 10);
+
+		countAverageMarks(group1);
+		group1.printStudents();
+
+		group2.addRandomStudents(9);
+		countAverageMarks(group2);
+		group2.printStudents();
+
 		getGroupsByStudent("Саша", "Иванов");
-		
+		group.findStudentResult("Саша", "Иванов");
+		group1.findStudentResult("Саша", "Иванов");
+		group2.findStudentResult("Саша", "Иванов");
 		System.out.println();
 		
-		group.findStudentResult("Саша", "Иванов");
-		group.findStudentResult("Артем", "Загребанцев");
-		
+		getGroupsByStudent(student);
+		group.findStudentResult(student);
+		group1.findStudentResult(student);
+		group2.findStudentResult(student);
 
 	}
 

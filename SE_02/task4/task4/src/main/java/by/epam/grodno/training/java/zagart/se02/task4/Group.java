@@ -57,6 +57,7 @@ public class Group<T extends Number> {
 		return groupName;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static ArrayList<Group> findGroupsByStudent(Student student) {
 		ArrayList<Group> list = new ArrayList<Group>();
 		for (Group g : groupsList) {
@@ -74,6 +75,7 @@ public class Group<T extends Number> {
 		return studentsList;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Student> createRandomStudent() {
 		Student student;
 		if (!studentsList.isEmpty()) {
@@ -187,47 +189,81 @@ public class Group<T extends Number> {
 		return mark;
 	}
 
-
 	public void findStudentResult(String name, String secondName) {
 		Student student = new Student(name, secondName);
 		float temp = (float) 0;
-		
+
 		for (int i = 0; i < countAverageMark.size(); i++) {
 			if (studentsList.get(i).equals(student)) {
 				temp = countAverageMark.get(i).floatValue();
 			}
 		}
-		
+
 		HashSet<T> list = new HashSet<T>(countAverageMark);
-		ArrayList<T> newList = new ArrayList(list);
+		ArrayList<T> newList = new ArrayList<T>(list);
 		Collections.sort(newList, comparator);
-		
+
 		for (int i = 0; i < newList.size(); i++) {
 			if ((newList.get(i).floatValue() <= temp + 0.001) && ((newList.get(i).floatValue() >= temp - 0.001))) {
-				System.out.println("Студент на " + (i + 1) + " месте по среднему баллу в своей группе.");
-			}
-		}
-	}
-	
-	public void findStudentResult(Student student) {
-		float temp = (float) 0;
-		
-		for (int i = 0; i < countAverageMark.size(); i++) {
-			if (studentsList.get(i).equals(student)) {
-				temp = countAverageMark.get(i).floatValue();
-			}
-		}
-		
-		HashSet<T> list = new HashSet<T>(countAverageMark);
-		ArrayList<T> newList = new ArrayList(list);
-		Collections.sort(newList, comparator);
-		
-		for (int i = 0; i < newList.size(); i++) {
-			if ((newList.get(i).floatValue() <= temp + 0.001) && ((newList.get(i).floatValue() >= temp - 0.001))) {
-				System.out.println("Студент на " + (i + 1) + " месте по среднему баллу в своей группе.");
+				System.out.printf(String.format("Студент %s %s на %d месте по среднему баллу в своей группе ",
+						student.getName(), student.getSecondName(), (i + 1)));
+
+				if (this.mark instanceof Integer) {
+					System.out.print("[");
+					for (T mark : newList) {
+						System.out.printf(" %d ", mark);
+					}
+					System.out.println("]");
+				}
+				
+				if (this.mark instanceof Float) {
+					System.out.print("[");
+					for (T mark : newList) {
+						System.out.printf(" %.2f ", mark);
+					}
+					System.out.println("]");
+				}
+
 			}
 		}
 	}
 
+	public void findStudentResult(Student student) {
+		float temp = (float) 0;
+
+		for (int i = 0; i < countAverageMark.size(); i++) {
+			if (studentsList.get(i).equals(student)) {
+				temp = countAverageMark.get(i).floatValue();
+			}
+		}
+
+		HashSet<T> list = new HashSet<T>(countAverageMark);
+		ArrayList<T> newList = new ArrayList<T>(list);
+		Collections.sort(newList, comparator);
+
+		for (int i = 0; i < newList.size(); i++) {
+			if ((newList.get(i).floatValue() <= temp + 0.001) && ((newList.get(i).floatValue() >= temp - 0.001))) {
+				System.out.printf(String.format("Студент %s %s на %d месте по среднему баллу в своей группе ",
+						student.getName(), student.getSecondName(), (i + 1)));
+
+				if (this.mark instanceof Integer) {
+					System.out.print("[");
+					for (T mark : newList) {
+						System.out.printf(" %d ", mark);
+					}
+					System.out.println("]");
+				}
+				
+				if (this.mark instanceof Float) {
+					System.out.print("[");
+					for (T mark : newList) {
+						System.out.printf(" %.2f ", mark);
+					}
+					System.out.println("]");
+				}
+
+			}
+		}
+	}
 
 }

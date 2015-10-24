@@ -19,6 +19,7 @@ public class Util {
 		return group;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void getGroupsByStudent(Student student) {
 		ArrayList<Group> list = Group.findGroupsByStudent(student);
 		System.out
@@ -29,9 +30,9 @@ public class Util {
 			}
 		} else
 			System.out.println("Не учится ни в одной из групп.");
-		System.out.println();
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static void getGroupsByStudent(String name, String secondName) {
 		ArrayList<Group> list = Group.findGroupsByStudent(new Student(name, secondName));
 		System.out.println(String.format("Студент %s %s учится в группах: ", name, secondName));
@@ -43,6 +44,7 @@ public class Util {
 			System.out.println("Не учится ни в одной из групп.");
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void countAverageMarks(Group group) {
 		ArrayList<Float> list = new ArrayList<Float>();
 		if (group.getMark() instanceof Float) {

@@ -40,6 +40,12 @@ public class Main {
 		
 		getGroupsByStudent(student);
 		getGroupsByStudent("Саша", "Иванов");
+		
+		System.out.println();
+		
+		group.findStudentResult("Саша", "Иванов");
+		group.findStudentResult("Артем", "Загребанцев");
+		
 
 	}
 

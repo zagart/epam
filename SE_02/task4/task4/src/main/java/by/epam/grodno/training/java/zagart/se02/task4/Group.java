@@ -3,6 +3,7 @@ package by.epam.grodno.training.java.zagart.se02.task4;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Random;
 
 public class Group<T extends Number> {
@@ -14,24 +15,16 @@ public class Group<T extends Number> {
 	public static ArrayList<Group<?>> groupsList = new ArrayList<Group<?>>();
 	private ArrayList<Student> studentsList = new ArrayList<Student>();
 	private ArrayList<ArrayList<T>> studentsMarksList = new ArrayList<ArrayList<T>>();
-	private ArrayList<T> countAverageMark = new ArrayList<T>() {
+	private ArrayList<T> countAverageMark = new ArrayList<T>();
 
-		private int compareTo(T o) {
-			if (o instanceof Number) {
-				if (this.floatValue() > o.floatValue())
-					return 1;
-				if (this.floatValue() < o.floatValue())
-					return -1;
-			}
-			return 0;
-		}
-		
-		private int compare(T o1, T o2) {
+	Comparator<T> comparator = new Comparator<T>() {
+
+		public int compare(T o1, T o2) {
 			if (o1 instanceof Number) {
 				if (o1.floatValue() > o2.floatValue())
-					return 1;
-				if (o1.floatValue() < o2.floatValue())
 					return -1;
+				if (o1.floatValue() < o2.floatValue())
+					return 1;
 			}
 			return 0;
 		}
@@ -194,13 +187,47 @@ public class Group<T extends Number> {
 		return mark;
 	}
 
-	public void findStudentResult(Student student) {
-		if (!countAverageMark.isEmpty()) {
-			ArrayList<T> list = countAverageMark;
-			Collections.sort(list);
-		} else {
-			System.out.println("Средний балл пока не подсчитан.");
+
+	public void findStudentResult(String name, String secondName) {
+		Student student = new Student(name, secondName);
+		float temp = (float) 0;
+		
+		for (int i = 0; i < countAverageMark.size(); i++) {
+			if (studentsList.get(i).equals(student)) {
+				temp = countAverageMark.get(i).floatValue();
+			}
+		}
+		
+		HashSet<T> list = new HashSet<T>(countAverageMark);
+		ArrayList<T> newList = new ArrayList(list);
+		Collections.sort(newList, comparator);
+		
+		for (int i = 0; i < newList.size(); i++) {
+			if ((newList.get(i).floatValue() <= temp + 0.001) && ((newList.get(i).floatValue() >= temp - 0.001))) {
+				System.out.println("Студент на " + (i + 1) + " месте по среднему баллу в своей группе.");
+			}
 		}
 	}
+	
+	public void findStudentResult(Student student) {
+		float temp = (float) 0;
+		
+		for (int i = 0; i < countAverageMark.size(); i++) {
+			if (studentsList.get(i).equals(student)) {
+				temp = countAverageMark.get(i).floatValue();
+			}
+		}
+		
+		HashSet<T> list = new HashSet<T>(countAverageMark);
+		ArrayList<T> newList = new ArrayList(list);
+		Collections.sort(newList, comparator);
+		
+		for (int i = 0; i < newList.size(); i++) {
+			if ((newList.get(i).floatValue() <= temp + 0.001) && ((newList.get(i).floatValue() >= temp - 0.001))) {
+				System.out.println("Студент на " + (i + 1) + " месте по среднему баллу в своей группе.");
+			}
+		}
+	}
+
 
 }

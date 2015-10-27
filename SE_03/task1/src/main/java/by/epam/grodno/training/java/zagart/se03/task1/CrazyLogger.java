@@ -6,30 +6,33 @@ import java.text.SimpleDateFormat;
 
 public class CrazyLogger {
 
+	final static byte dateMaxLength = 18; 
+	final static byte logMaxLength = 18;	
+	final static private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-YYYY : hh-mm");
 	private StringBuilder log = new StringBuilder(" ");
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-YYYY : hh-mm");
 
-	public void Append(Date date, String msg) {
+	public void append(Date date, String msg) {
 		log.append(String.valueOf(String.format("{%s}", dateFormat.format(date))));
 		log.append(String.format("[%s]; ", msg));
 	}
 
-	public void Print() {
+	public void print() {
 		System.out.println(log.substring(0, log.length()));
 		System.out.println();
 	}
 
-	public String findDateByMsg(String byMsg) {
-		StringBuilder logCopy = new StringBuilder(log); 
-		int index = logCopy.lastIndexOf(byMsg) - 2;
-		if (index != -3) {
-			logCopy.delete(index, logCopy.length());
-			index = logCopy.lastIndexOf(";") + 3;
-			String date = logCopy.substring(index, logCopy.length());
-			return date;
-		}
-		return "Не найдено.";
+	public String findDateByMsg(String msg) {
+		int msgStartIndex = log.lastIndexOf(msg);
+		if (msgStartIndex != -1) {
+			int logEndIndex = log.indexOf("]", msgStartIndex) - 1;
+			int logStartIndex = log.indexOf("[", logEndIndex - logMaxLength - 1) + 1;		
+			int dateEndIndex = logStartIndex - 2;
+			int dateStartIndex = log.indexOf("{", dateEndIndex - dateMaxLength - 1) + 1;
+			return log.substring(dateStartIndex, dateEndIndex);
+		}		
+		return "Сообщение не найдено.";
 	}
+	
 
 	public String findMsgByDate(Date byDate) {
 		String date = String.valueOf(dateFormat.format(byDate));

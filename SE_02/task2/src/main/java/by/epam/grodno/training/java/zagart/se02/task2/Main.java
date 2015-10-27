@@ -1,33 +1,28 @@
 package by.epam.grodno.training.java.zagart.se02.task2;
 
-import by.epam.grodno.training.java.zagart.se02.task2.office.Eraser;
-import by.epam.grodno.training.java.zagart.se02.task2.office.Ruler;
-import by.epam.grodno.training.java.zagart.se02.task2.writing.Pen;
-import by.epam.grodno.training.java.zagart.se02.task2.writing.Pensil;
-
 public class Main {
 
 	public static void main(String[] args) {
+		Worker wrk = new Worker();
+		wrk.setName("Артем");
+		wrk.pen.setValue(10);
+		wrk.pen.setQuantity(1);
+		wrk.pensil.setValue(5);
+		wrk.pensil.setQuantity(3);
+		wrk.eraser.setValue(6);
+		wrk.eraser.setQuantity(1);
 		
-		Kit<Stationery> newbieKit = new Kit<Stationery>();
+		Worker wrk1 = new Worker("Дмитрий");
+		wrk1.pen.setValue(5);
+		wrk1.pen.setQuantity(4);
 		
-		newbieKit.addStationery(new Pen("Ручка MAXWELL", 1000));
-		newbieKit.addStationery(new Pensil("Карандаш Tone", 500));
-		newbieKit.addStationery(new Pen("Ручка TUKZAR", 3000));
-		newbieKit.addStationery(new Eraser("Ластик Style", 1000));
-		Ruler ruler = new Ruler();
-		ruler.setName("Линейка TUKZAR");
-		ruler.setCost(5000);
-		ruler.setLength(10);
-		newbieKit.addStationery(ruler);
+		Worker wrk2 = 
+				new Worker("Александра", new Pen(5, 2, "голубой"), new Pensil(5, 1, "твердый"),
+						new Ruler(10, 1, 10), new Eraser(5, 1, "белый"));
 		
-		newbieKit.getStationeryList();
-		System.out.println();
-		newbieKit.getKitCost();
-		
-		System.out.println();
-		System.out.println(ruler);
-		
+		wrk.getStationery();
+		wrk1.getStationery();
+		wrk2.getStationery();
 		
 	}
 

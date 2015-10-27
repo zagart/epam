@@ -1,48 +1,33 @@
 package by.epam.grodno.training.java.zagart.se02.task2;
 
-abstract public class Stationery {
-	
-	private String name = null;
-	private int cost = 0;
-	private String description = null;
+public abstract class Stationery {
+	private int value = 0;
+	private int quantity = 0;
 
-	public String getName() {
-		return name;
+	public int getValue() {
+		return value;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setValue(int value) {
+		this.value = value;
 	}
 
-	public int getCost() {
-		return cost;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setCost(int cost) {
-		this.cost = cost;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public String getDescription() {
-		return description; 
-	}
-
-	public Stationery(String name, int cost) {
+	public Stationery(int value, int quantity) {
 		super();
-		this.name = name;
-		this.cost = cost;
+		this.value = value;
+		this.quantity = quantity;
 	}
-	
+
 	public Stationery() {
-		
+
 	}
-	
-	@Override
-	public String toString() {
-		return this.getName() + ". Стоимость: " + this.getCost() + " руб. " + getDescription();
-	}
-	
+
 }

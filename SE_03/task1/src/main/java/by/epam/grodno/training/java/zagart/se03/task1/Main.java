@@ -9,32 +9,34 @@ import java.util.Date;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
-
+	public static void main(String[] args) throws IOException, ParseException {
+		
 		CrazyLogger log = new CrazyLogger();
 		BufferedReader rdr = new BufferedReader(new InputStreamReader(System.in));
-		
-		log.Append(createDate(1, 1, 1994, 22, 30), "Первый лог.");
-		log.Append(new Date(), "Второй лог.");
-		log.Append(createDate(26, 5, 2000, 22, 30), "Третий лог.");
-		log.Print();
-		System.out.println("Сообщение найдено по дате: " + log.findMsgByDate(createDate(26, 5, 2000, 22, 30)));
-		
+
+		log.append(createDate(1, 1, 1994, 10, 30), "Первый лог.");
+		log.append(new Date(), "Второй лог.");
+		log.append(createDate(26, 5, 2000, 11, 30), "Третий лог.");
+		log.print();
+		System.out.println("Сообщение найдено по дате: " + log.findMsgByDate(createDate(26, 5, 2000, 11, 30)));
+
 		System.out.println("Введите сообщение для поиска даты: ");
-		System.out.println(log.findDateByMsg(rdr.readLine()));
+		String msg = rdr.readLine();
+		while ((msg.length() > 18) || (msg.length() < 1)) {
+			System.out.print("Сообщение не должно быть пустым и не должно ");
+			System.out.printf("иметь длину более %s символов. \n", CrazyLogger.logMaxLength);
+			System.out.println("Попробуйте снова: ");
+			msg = rdr.readLine();
+		}
+		System.out.println(log.findDateByMsg(msg));
 
 	}
 
-	public static Date createDate(int day, int month, int year, int hour, int minute) {
+	public static Date createDate(int day, int month, int year, int hour, int minute) throws ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-YYYY : hh-mm");
 		String strDate = String.format("%s-%s-%s : %s-%s", day, month, year, hour, minute);
-		Date date = new Date();
-		try {
-			date = dateFormat.parse(strDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
+		Date objDate = dateFormat.parse(strDate);
+		return objDate;
 	}
 
 }

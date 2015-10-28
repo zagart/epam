@@ -34,7 +34,7 @@ public class Util {
 		}
 		return msg;
 	}
-	
+
 	public static int checkMenuItemNumber(int selectedItem) throws NumberFormatException, IOException {
 		int item = selectedItem;
 		while ((item > 5) || (item < 1)) {
@@ -43,11 +43,10 @@ public class Util {
 		}
 		return item;
 	}
-	
+
 	public static int isNumber(String msg) {
 		try {
 			return Integer.parseInt(msg);
-			
 		} catch (NumberFormatException e) {
 			return -1;
 		}

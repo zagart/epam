@@ -37,11 +37,20 @@ public class Util {
 	
 	public static int checkMenuItemNumber(int selectedItem) throws NumberFormatException, IOException {
 		int item = selectedItem;
-		while ((item > 4) || (item < 1)) {
+		while ((item > 5) || (item < 1)) {
 			System.out.println("Номер пункта меню выбран неверно. Попробуйте снова: ");
 			selectedItem = Integer.parseInt(rdr.readLine());
 		}
 		return item;
+	}
+	
+	public static int isNumber(String msg) {
+		try {
+			return Integer.parseInt(msg);
+			
+		} catch (NumberFormatException e) {
+			return -1;
+		}
 	}
 
 }

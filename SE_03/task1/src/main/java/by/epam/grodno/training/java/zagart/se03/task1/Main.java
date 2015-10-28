@@ -17,22 +17,30 @@ public class Main {
 		log.print();
 
 		String inputString = "";
-		while (!inputString.equals("exit")) {
+		boolean exit = false;
+		while (exit == false) {
 			int selectedItem = 0;
 			System.out.println("\n Выберите действие: ");
 			System.out.println("1) Добавить сообщение.");
 			System.out.println("2) Найти дату по сообщению.");
 			System.out.println("3) Найти сообщение по дате.");
 			System.out.println("4) Вывести лог.");
-
-			if (inputString.equals("exit")) {
-				System.out.println("\nПриложение завершило работу...");
-				break;
-			}
+			System.out.println("5) Выход.");
 
 			System.out.println("Введите номер пункта меню: ");
 			inputString = rdr.readLine();
+
+			if (isNumber(inputString) != -1) {
+				selectedItem = Integer.parseInt(inputString);
+			} else {
+				while (isNumber(inputString) == -1) {
+					System.out.println("Вводите ЧИСЛО... Попробуйте снова:");
+					inputString = rdr.readLine();
+				}
+			}
+
 			selectedItem = Integer.parseInt(inputString);
+
 			switch (checkMenuItemNumber(selectedItem)) {
 			case 1:
 				System.out.println("Введите новое сообщение:");
@@ -52,10 +60,12 @@ public class Main {
 				System.out.println("Уже сохраненные сообщения:");
 				log.print();
 				break;
+			case 5:
+				System.out.println("\nПриложение завершило работу...");
+				exit = true;
+				break;
 			}
 		}
-
-		System.out.println(date.toString());
 
 	}
 

@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 public class CrazyLogger {
 
 	final static byte dateMaxLength = 18; 
-	final static byte logMaxLength = 18;	
-	final static private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-YYYY : hh-mm");
+	final static byte msgMaxLength = 18;	
+	final static public SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY : hh-mm");
 	private StringBuilder log = new StringBuilder(" ");
 
 	public void append(Date date, String msg) {
@@ -25,25 +25,25 @@ public class CrazyLogger {
 		int msgStartIndex = log.lastIndexOf(msg);
 		if (msgStartIndex != -1) {
 			int logEndIndex = log.indexOf("]", msgStartIndex) - 1;
-			int logStartIndex = log.indexOf("[", logEndIndex - logMaxLength - 1) + 1;		
+			int logStartIndex = log.indexOf("[", logEndIndex - msgMaxLength - 1) + 1;		
 			int dateEndIndex = logStartIndex - 2;
 			int dateStartIndex = log.indexOf("{", dateEndIndex - dateMaxLength - 1) + 1;
 			return log.substring(dateStartIndex, dateEndIndex);
 		}		
-		return "Сообщение не найдено.";
+		return "Сообщение не найдено. \n\n";
 	}
 	
 
 	public String findMsgByDate(Date byDate) {
 		String date = String.valueOf(dateFormat.format(byDate));
-		String msg = "не найдено.";
+		String msg = "";
 		if (log.indexOf(date) != -1) {
 			Integer startIndex = log.indexOf("[", log.indexOf(date)) + 1;
 			Integer endIndex = log.indexOf("]", startIndex) - 1;
 			msg = log.substring(startIndex, endIndex);
 			return msg;
 		}
-		return msg;
+		return "Дата не найдена.";
 	}
 
 }

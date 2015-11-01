@@ -1,4 +1,4 @@
-package by.epam.grodno.training.java.zagart.se04.task1;
+package by.epam.grodno.training.java.zagart.se04.task2;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -28,7 +28,7 @@ public class Util {
 		}
 		return keywords;
 	}
-
+	
 	/**
 	 * Method save HashMap content to StringBuilder object with common
 	 * information to let use information more effective.

@@ -1,6 +1,8 @@
 package by.epam.grodno.training.java.zagart.se04.task1;
 
-import static by.epam.grodno.training.java.zagart.se04.task1.Util.*;
+import static by.epam.grodno.training.java.zagart.se04.task1.Util.findKeywordsIterations;
+import static by.epam.grodno.training.java.zagart.se04.task1.Util.saveKeywordsIterations;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -46,10 +47,8 @@ public class Main {
 		/*
 		 * Reading bytes from source file until it have them.
 		 */
-		int count = 0;
 		while (sourceFile.available() > 0) {
 			sourceFile.read(sourceInBytes);
-			count++;
 		}
 
 		/*

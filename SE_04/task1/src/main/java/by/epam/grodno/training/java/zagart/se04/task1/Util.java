@@ -1,5 +1,7 @@
 package by.epam.grodno.training.java.zagart.se04.task1;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,13 +27,37 @@ public class Util {
 		return keywords;
 	}
 
-	private static int countKeywordIterations(String source, String keyword) {
+	public static int countKeywordIterations(String source, String keyword) {
 		int count = 0;
-		int startIndex = 0;
-		keyword = keyword + " ";
+		int startIndex = 1;
+		ArrayList<String> list = new ArrayList<String>();
+		source += " ";
 		while (source.indexOf(keyword, startIndex) != -1) {
+			if (startIndex > 0) {
+				int substrPosition = source.indexOf(keyword, startIndex);
+				String value = source.substring(substrPosition - 1, substrPosition + keyword.length() + 1);
+				list.add(list.size(), value);
+				count++;
+			}
 			startIndex = source.indexOf(keyword, startIndex) + 1;
-			count++;
+		}
+
+		count = editListKeywords(list, count);
+		return count;
+	}
+
+	public static int editListKeywords(ArrayList<String> list, int count) {
+		for (int i = 0; i < list.size(); i++) {
+			char[] arr = list.get(i).toCharArray();
+			char firstChar = arr[0];
+			boolean boolPrefix = (firstChar == ' ') || (firstChar == '\t') || (firstChar == '\n') || (firstChar == ';') ;
+			char lastChar = arr[arr.length - 1];
+			boolean boolPostfix = (lastChar == ' ') || (lastChar == '\t') || (lastChar == '\n');
+			if (!(boolPrefix && boolPostfix)) {
+				list.remove(i);
+				count--;
+				i--;
+			}
 		}
 		return count;
 	}

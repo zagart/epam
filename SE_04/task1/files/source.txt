@@ -1,10 +1,11 @@
 class Main {
 
 	public static void main(String[] args) {
-	
+
 	int a = 10;
-	String b = "ten";
-	Systen.out.println(String.format("%s is %s", a, b));
+	int b = 3;
+	Integer int123 = 123;
+	System.out.println(String.format("%s is %s", a, b));
 
 
 	}

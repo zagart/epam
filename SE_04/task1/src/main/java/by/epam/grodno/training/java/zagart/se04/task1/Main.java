@@ -1,8 +1,6 @@
 package by.epam.grodno.training.java.zagart.se04.task1;
 
-import static by.epam.grodno.training.java.zagart.se04.task1.Util.findKeywordsIterations;
-import static by.epam.grodno.training.java.zagart.se04.task1.Util.printKeywordsIterations;
-
+import static by.epam.grodno.training.java.zagart.se04.task1.Util.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -22,14 +21,15 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		String baseDir = new File(".").getCanonicalPath();  // Taken path application.
-		
+		String appPath = new File(".").getCanonicalPath(); // Taken path
+															// application.
+
 		InputStream sourceFile = new FileInputStream(
-				String.format("%s%sfiles%ssource.txt", baseDir, File.separator, File.separator));
-		
+				String.format("%s%sfiles%ssource.txt", appPath, File.separator, File.separator));
+
 		OutputStream resultFile = new FileOutputStream(
-				String.format("%s%sfiles%sresult.txt", baseDir, File.separator, File.separator));
-		
+				String.format("%s%sfiles%sresult.txt", appPath, File.separator, File.separator));
+
 		byte[] sourceInBytes = new byte[sourceFile.available()];
 		HashMap<String, Integer> keywords = new HashMap<String, Integer>();
 
@@ -41,15 +41,19 @@ public class Main {
 			sourceFile.read(sourceInBytes);
 			count++;
 		}
-		resultFile.write(sourceInBytes); // Writing result to result file.
+		
+		resultFile.write(sourceInBytes); // Writing result to file.
 		String fileContent = new String(sourceInBytes, StandardCharsets.UTF_8); // Source
 																				// file
 																				// in
 																				// String.
 
-		keywords = findKeywordsIterations(fileContent);
-		printKeywordsIterations(keywords);
-		byte[] resultInBytes = new byte[keywords.size()];
+		
+		 keywords = findKeywordsIterations(fileContent);
+		 printKeywordsIterations(keywords);
+		 byte[] resultInBytes = new byte[keywords.size()];
+		 
+		
 
 	}
 

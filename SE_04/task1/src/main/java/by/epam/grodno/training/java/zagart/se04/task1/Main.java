@@ -21,17 +21,27 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		String appPath = new File(".").getCanonicalPath(); // Taken path
-															// application.
+		/*
+		 * Get application path.
+		 */
+		String appPath = new File(".").getCanonicalPath();
 
+		/*
+		 * New byte input stream for reading from file source.txt
+		 */
 		InputStream sourceFile = new FileInputStream(
 				String.format("%s%sfiles%ssource.txt", appPath, File.separator, File.separator));
 
+		/*
+		 * New byte output stream for writing in file result.txt
+		 */
 		OutputStream resultFile = new FileOutputStream(
 				String.format("%s%sfiles%sresult.txt", appPath, File.separator, File.separator));
 
+		/*
+		 * Byte array for source.txt content.
+		 */
 		byte[] sourceInBytes = new byte[sourceFile.available()];
-		HashMap<String, Integer> keywords = new HashMap<String, Integer>();
 
 		/*
 		 * Reading bytes from source file until it have them.
@@ -41,19 +51,33 @@ public class Main {
 			sourceFile.read(sourceInBytes);
 			count++;
 		}
-		
-		resultFile.write(sourceInBytes); // Writing result to file.
-		String fileContent = new String(sourceInBytes, StandardCharsets.UTF_8); // Source
-																				// file
-																				// in
-																				// String.
 
-		
-		 keywords = findKeywordsIterations(fileContent);
-		 printKeywordsIterations(keywords);
-		 byte[] resultInBytes = new byte[keywords.size()];
-		 
-		
+		/*
+		 * Creating new String objects from bytes using UTF-8.
+		 */
+		String fileContent = new String(sourceInBytes, StandardCharsets.UTF_8);
+
+		/*
+		 * Creating new HashMap object which will contain founded in source.txt
+		 * file Java's keywords.
+		 */
+		HashMap<String, Integer> keywords = new HashMap<String, Integer>();
+
+		/*
+		 * Using class Util's methods to find keywords.
+		 */
+		keywords = findKeywordsIterations(fileContent);
+		sourceInBytes = saveKeywordsIterations(keywords).toString().getBytes();
+
+		/*
+		 * Writing result in file.
+		 */
+		resultFile.write(sourceInBytes);
+
+		/*
+		 * Print result in console.
+		 */
+		System.out.println(saveKeywordsIterations(keywords).toString());
 
 	}
 

@@ -1,13 +1,4 @@
-class Main {
-
-	public static void main(String[] args) {
-
-	int a = 10;
-	int b = 3;
-	Integer int123 = 123;
-	System.out.println(String.format("%s is %s", a, b));
-
-
-	}
-
-}
+static встречается 1 раз(-a).
+void встречается 1 раз(-a).
+public встречается 1 раз(-a).
+int встречается 2 раз(-a).

@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  */
 public class Util {
 
-	/*
+	/**
 	 * Method which can find all keys iterations in source file. Keys taken from
 	 * Keywords.properties file.
 	 */
@@ -28,6 +28,22 @@ public class Util {
 			keywords.put(key, count);
 		}
 		return keywords;
+	}
+	
+	/**
+	 * Method save HashMap content to StringBuilder object with common
+	 * information to let use information more effective.
+	 */
+	public static StringBuilder saveKeywordsIterations(HashMap<String, Integer> keywords) {
+		Iterator<Map.Entry<String, Integer>> itr = keywords.entrySet().iterator();
+		StringBuilder savedResult = new StringBuilder();
+		while (itr.hasNext()) {
+			Map.Entry<String, Integer> pair = itr.next();
+			if (pair.getValue() != 0) {
+				savedResult.append(String.format("%s встречается %s раз(-a).\n", pair.getKey(), pair.getValue()));
+			}
+		}
+		return savedResult;
 	}
 
 	/*
@@ -72,22 +88,6 @@ public class Util {
 			}
 		}
 		return count;
-	}
-
-	/*
-	 * Method save HashMap content to StringBuilder object with common
-	 * information to let use information more effective.
-	 */
-	public static StringBuilder saveKeywordsIterations(HashMap<String, Integer> keywords) {
-		Iterator<Map.Entry<String, Integer>> itr = keywords.entrySet().iterator();
-		StringBuilder savedResult = new StringBuilder();
-		while (itr.hasNext()) {
-			Map.Entry<String, Integer> pair = itr.next();
-			if (pair.getValue() != 0) {
-				savedResult.append(String.format("%s встречается %s раз(-a).\n", pair.getKey(), pair.getValue()));
-			}
-		}
-		return savedResult;
 	}
 
 }

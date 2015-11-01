@@ -13,7 +13,7 @@ public class Main {
 		Date date = createDate(11, 11, 1994, 10, 30);
 		log.append(date, "Первый лог.");
 		log.append(new Date(), "Второй лог.");
-		log.append(createDate(1, 1, 1999, 11, 11), "Третий лог.");
+		log.append(new Date(1994 - 1900, 1, 31, 11, 1), "Третий лог.");
 		log.print();
 
 		String inputString = "";

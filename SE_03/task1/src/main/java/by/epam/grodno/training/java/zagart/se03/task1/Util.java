@@ -16,7 +16,9 @@ public class Util {
 
 	public static Date createDate(int day, int month, int year, int hour, int minute) throws ParseException {
 		String strDate = String.format("%s-%s-%s : %s-%s", day, month, year, hour, minute);
+		System.out.println(strDate);
 		Date objDate = CrazyLogger.dateFormat.parse(strDate);
+		System.out.println(objDate);
 		return objDate;
 	}
 

@@ -50,6 +50,7 @@ public class Main {
 		while (sourceFile.available() > 0) {
 			sourceFile.read(sourceInBytes);
 		}
+		sourceFile.close();
 
 		/*
 		 * Creating new String objects from bytes using UTF-8.
@@ -72,7 +73,8 @@ public class Main {
 		 * Writing result in file.
 		 */
 		resultFile.write(sourceInBytes);
-
+		resultFile.close();
+		
 		/*
 		 * Print result in console.
 		 */

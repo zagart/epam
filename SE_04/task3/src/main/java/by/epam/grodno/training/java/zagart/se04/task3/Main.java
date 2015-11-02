@@ -1,9 +1,9 @@
 package by.epam.grodno.training.java.zagart.se04.task3;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Writer;
+import java.io.OutputStream;
 
 import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.io.FileUtils;
@@ -34,24 +34,19 @@ public class Main {
 		 * UTF-8). All done with help of Apache's libraries.
 		 */
 		String sourceUTF8 = FileUtils.readFileToString(sourceFile);
-		StringUtils.newStringUtf8(sourceUTF8.getBytes());
+		StringUtils.newStringUtf8(sourceUTF8.getBytes("UTF-8"));
 
 		/*
-		 * New symbol output stream for writing in file result.txt
+		 * New output stream for writing in file result.txt
 		 */
 		@SuppressWarnings("resource")
-		Writer resultFile = new FileWriter(
+		OutputStream resultFile = new FileOutputStream(
 				String.format("%s%sfiles%sresult.txt", appPath, File.separator, File.separator));
-
-		/*
-		 * Converting UTF-8 string to UTF-16 string using Apache's libraries.
-		 */
-		String resultUTF16 = StringUtils.newStringUtf16(sourceUTF8.getBytes());
 		
 		/*
-		 * Saving result to file.
+		 * Saving result to file in UTF-16.
 		 */
-		resultFile.write(resultUTF16);
+		resultFile.write(sourceUTF8.getBytes("UTF-16"));
 
 	}
 

@@ -30,7 +30,7 @@ public class Main {
 				String.format("%s%sfiles%ssource.txt", appPath, File.separator, File.separator));
 
 		/*
-		 * New symbol output stream for writing in file result.txt
+		 * New symbol writer for writing in file result.txt
 		 */
 		Writer resultWriter = new FileWriter(
 				String.format("%s%sfiles%sresult.txt", appPath, File.separator, File.separator));

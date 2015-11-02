@@ -40,13 +40,14 @@ public class Main {
 		 * New output stream for writing in file result.txt
 		 */
 		@SuppressWarnings("resource")
-		OutputStream resultFile = new FileOutputStream(
+		OutputStream resultStream = new FileOutputStream(
 				String.format("%s%sfiles%sresult.txt", appPath, File.separator, File.separator));
 		
 		/*
 		 * Saving result to file in UTF-16.
 		 */
-		resultFile.write(sourceUTF8.getBytes("UTF-16"));
+		resultStream.write(sourceUTF8.getBytes("UTF-16"));
+		resultStream.close();
 
 	}
 

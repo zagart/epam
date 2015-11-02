@@ -30,28 +30,28 @@ public class Main {
 		/*
 		 * New byte input stream for reading from file source.txt
 		 */
-		InputStream sourceFile = new FileInputStream(
+		InputStream sourceStream = new FileInputStream(
 				String.format("%s%sfiles%ssource.txt", appPath, File.separator, File.separator));
 
 		/*
 		 * New byte output stream for writing in file result.txt
 		 */
-		OutputStream resultFile = new FileOutputStream(
+		OutputStream resultStream = new FileOutputStream(
 				String.format("%s%sfiles%sresult.txt", appPath, File.separator, File.separator));
 
 		/*
 		 * Byte array for source.txt content.
 		 */
-		byte[] sourceInBytes = new byte[sourceFile.available()];
+		byte[] sourceInBytes = new byte[sourceStream.available()];
 
 		/*
 		 * Reading bytes from source file until it have them and instantly
 		 * closing FileInputStream for freeing resources.
 		 */
-		while (sourceFile.available() > 0) {
-			sourceFile.read(sourceInBytes);
+		while (sourceStream.available() > 0) {
+			sourceStream.read(sourceInBytes);
 		}
-		sourceFile.close();
+		sourceStream.close();
 
 		/*
 		 * Creating new String objects from bytes using UTF-8.
@@ -74,8 +74,8 @@ public class Main {
 		 * Writing result in file and closing FileOutputStream stream for
 		 * freeing resources.
 		 */
-		resultFile.write(sourceInBytes);
-		resultFile.close();
+		resultStream.write(sourceInBytes);
+		resultStream.close();
 
 		/*
 		 * Print result in console.

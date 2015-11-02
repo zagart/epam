@@ -45,7 +45,8 @@ public class Main {
 		byte[] sourceInBytes = new byte[sourceFile.available()];
 
 		/*
-		 * Reading bytes from source file until it have them.
+		 * Reading bytes from source file until it have them and instantly
+		 * closing FileInputStream for freeing resources.
 		 */
 		while (sourceFile.available() > 0) {
 			sourceFile.read(sourceInBytes);
@@ -70,11 +71,12 @@ public class Main {
 		sourceInBytes = saveKeywordsIterations(keywords).toString().getBytes();
 
 		/*
-		 * Writing result in file.
+		 * Writing result in file and closing FileOutputStream stream for
+		 * freeing resources.
 		 */
 		resultFile.write(sourceInBytes);
 		resultFile.close();
-		
+
 		/*
 		 * Print result in console.
 		 */

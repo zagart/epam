@@ -1,15 +1,11 @@
 package by.epam.grodno.training.java.zagart.se04.task2;
 
-import static by.epam.grodno.training.java.zagart.se04.task2.Util.findKeywordsIterations;
-import static by.epam.grodno.training.java.zagart.se04.task2.Util.saveKeywordsIterations;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 /**
@@ -40,12 +36,24 @@ public class Main {
 				String.format("%s%sfiles%sresult.txt", appPath, File.separator, File.separator));
 
 		/*
-		 * Reading bytes from source file until it have them.
+		 * Reading chars from source file and saving them in StringBuilder
+		 * object until it have them. Closing FileReader stream for freeing
+		 * resources.
 		 */
-		
-		resultWriter.write('1');
-		resultWriter.close();
+		StringBuilder charsList = new StringBuilder();
+		while (sourceReader.ready()) {
+			charsList.append((char) sourceReader.read());
+		}
+		sourceReader.close();
 
+		/*
+		 * Search Java's keywords in charList and writing them in result file
+		 * using Util's methods. Closing FileWriter stream for freeing
+		 * resources.
+		 */
+		HashMap<String, Integer> keywords = Util.findKeywordsIterations(charsList.toString());
+		resultWriter.write(Util.saveKeywordsIterations(keywords).toString());
+		resultWriter.close();
 
 	}
 

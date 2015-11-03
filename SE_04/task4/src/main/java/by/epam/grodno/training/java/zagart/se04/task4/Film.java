@@ -5,15 +5,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Class let create film's objects with actors list collection. Class have several
- * setter and getters and overloaded constructor.
+ * Class let create film's objects with actors list collection. Class have
+ * several setter and getters and overloaded constructor. Serializable.
  */
 public class Film implements Serializable {
 
 	private static final long serialVersionUID = -1204136510133319707L;
 	private Collection<Actor> actorsList = new ArrayList<Actor>();
-	@SuppressWarnings("unused")
 	private String title;
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	public Film(String title, Actor actor) {
 		this.title = title;

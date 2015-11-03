@@ -22,6 +22,9 @@ public class Main {
 
 	}
 
+	/*
+	 * Method which create menu for films' collection.
+	 */
 	private static void filmsMenu(Collection<Film> films) {
 		while (true) {
 			System.out.println("\n\t Меню");

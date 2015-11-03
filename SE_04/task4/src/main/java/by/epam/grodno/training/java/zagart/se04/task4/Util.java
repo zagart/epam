@@ -99,6 +99,9 @@ public class Util {
 		return selectedItem;
 	}
 
+	/**
+	 * Method delete film from films' collection by it's index.
+	 */
 	public static void deleteFilmFromCollection(Collection<Film> films) {
 		if (!films.isEmpty()) {
 			int selectedItem = 0;
@@ -141,6 +144,9 @@ public class Util {
 		}
 	}
 
+	/**
+	 * Method add new film to films' collection.
+	 */
 	public static void addNewFilm(Collection<Film> films) {
 		ArrayList<Film> newFilms = (ArrayList<Film>) films;
 		System.out.println("\tДобавление фильма.");
@@ -154,6 +160,9 @@ public class Util {
 		}
 	}
 
+	/*
+	 * Creating new film using information from console.
+	 */
 	private static Film filmEnter() throws IOException {
 		System.out.println("Введите название фильма:");
 		String title = reader.readLine();
@@ -163,6 +172,5 @@ public class Util {
 		String secondName = reader.readLine();
 		return new Film(title, new Actor(name, secondName));
 	}
-
 
 }

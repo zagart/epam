@@ -17,12 +17,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		ArrayList<Film> films = new ArrayList<Film>();
-		films.add(new Film("Пираты Карибского Моря", new Actor("Джонни", "Депп")));
-		films.add(new Film("Сказка", new Actor("Робин", "Гуд")));
-		Util.saveCollectionInDataFile(films);
-		Collection<Film> films2 = Util.getDataFileCollection();
-		filmsMenu(films2);
+		ArrayList<Film> films = (ArrayList<Film>) Util.getDataFileCollection();
+		filmsMenu(films);
 
 	}
 

@@ -102,9 +102,9 @@ public class Util {
 	public static void deleteFilmFromCollection(Collection<Film> films) {
 		if (!films.isEmpty()) {
 			int selectedItem = 0;
-			ArrayList<Film> newFilms = (ArrayList<Film>) films;
 			System.out.println("\nВведите номер фильма для удаления:");
-			selectedItem = Util.itemMenuEnter(newFilms.size()) - 1;
+			selectedItem = Util.itemMenuEnter(films.size()) - 1;
+			ArrayList<Film> newFilms = (ArrayList<Film>) films;
 			newFilms.remove(selectedItem);
 			System.out.printf("Фильм под номером %s удален.\n", selectedItem + 1);
 			Util.saveCollectionInDataFile(newFilms);
@@ -141,9 +141,11 @@ public class Util {
 		}
 	}
 
-	public static void addNewFilm(Collection<Film> films2) {
-		// TODO Auto-generated method stub
-		
+	public static void addNewFilm(Collection<Film> films) {
+		ArrayList<Film> newFilms = (ArrayList<Film>) films;
+		newFilms.add(new Film("Film", new Actor("Name","Second Name")));
+		Util.saveCollectionInDataFile(newFilms);
+		System.out.println("Фильм успешно добавлен.\n");
 	}
 
 }

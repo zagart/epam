@@ -143,9 +143,26 @@ public class Util {
 
 	public static void addNewFilm(Collection<Film> films) {
 		ArrayList<Film> newFilms = (ArrayList<Film>) films;
-		newFilms.add(new Film("Film", new Actor("Name","Second Name")));
-		Util.saveCollectionInDataFile(newFilms);
-		System.out.println("Фильм успешно добавлен.\n");
+		System.out.println("\tДобавление фильма.");
+		try {
+			newFilms.add(filmEnter());
+			Util.saveCollectionInDataFile(newFilms);
+			System.out.println("Фильм успешно добавлен.\n");
+		} catch (IOException e) {
+			System.out.println("Неизвестная ошибка. Выход из программы.");
+			System.exit(1);
+		}
 	}
+
+	private static Film filmEnter() throws IOException {
+		System.out.println("Введите название фильма:");
+		String title = reader.readLine();
+		System.out.println("Введите имя актера:");
+		String name = reader.readLine();
+		System.out.println("Введите фамилию актера:");
+		String secondName = reader.readLine();
+		return new Film(title, new Actor(name, secondName));
+	}
+
 
 }

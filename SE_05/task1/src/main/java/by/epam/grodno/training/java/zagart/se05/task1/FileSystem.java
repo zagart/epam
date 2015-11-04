@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * Class for resolving tasks connected with file system.
+ * Utility class for resolving tasks connected with file system.
  */
 public class FileSystem {
 
@@ -27,11 +27,15 @@ public class FileSystem {
 	 * Method print current folder files.
 	 */
 	public static void printCurrentPosition(ArrayList<File> currentPosition) {
+		System.out.println("\t--Меню--");
 		byte count = 0;
 		for (File f : currentPosition) {
 			count++;
 			System.out.printf("%s) %s\n", count, f);
 		}
+		count++;
+		String info = "Создать, удалить или дозаписать текстовый файл.";
+		System.out.printf("%s) %s\n", count, info);	
 		if (!isMainRoot(currentPosition)) {
 			count++;
 			System.out.printf("%s) %s\n", count, "Назад.\n");	
@@ -42,7 +46,7 @@ public class FileSystem {
 
 	}
 	
-	/*
+	/**
 	 * Method check is it already main root.
 	 */
 	public static boolean isMainRoot(ArrayList<File> currentPosition) {
@@ -74,7 +78,7 @@ public class FileSystem {
 		return currentPosition;
 	}
 
-	/*
+	/**
 	 * Method make copy of files' array and put it into ArrayList.
 	 */
 	public static ArrayList<File> makeArrayCopy(File[] fileArray) {

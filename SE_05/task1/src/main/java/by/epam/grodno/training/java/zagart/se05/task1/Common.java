@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Class with static methods for common goals.
+ * Utility class with static methods for common goals.
  */
-public class Util {
+public class Common {
 
-	private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
+	public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	
 	/**
 	 * Method for entering value from console which will cause action according
 	 * to item of menu. Also take under control possible exceptional situations.
@@ -27,7 +27,7 @@ public class Util {
 				exception = false;
 			} catch (NumberFormatException e) {
 				exception = true;
-				System.out.println("Ошибка ввода. Попробуйте снова: ");
+				System.out.println("Неверный формат ввода. Попробуйте снова: ");
 			}
 		}
 		return selectedItem;

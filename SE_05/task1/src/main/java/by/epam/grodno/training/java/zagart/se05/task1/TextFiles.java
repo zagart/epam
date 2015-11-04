@@ -31,7 +31,12 @@ public class TextFiles {
 				newFile = new File(path + name + ".txt");
 				exception = false;
 				if (!isMainRoot(currentPosition)) {
-					newFile.createNewFile();
+					if (!newFile.exists()) {
+						newFile.createNewFile();
+					} else {
+						System.out.print("Файл не был создан. Такой файл");
+						System.out.println(" уже существует.");
+					}
 				} else {
 					System.out.println("Тут нельзя файл создать нельзя!");
 				}

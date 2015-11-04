@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.commons.io.FileUtils;
+
 /**
  * Utility class for work with text files.
  */
@@ -18,50 +20,96 @@ public class TextFiles {
 	/**
 	 * Method for creating file in chosen directory.
 	 */
-	public static File createTextFile(ArrayList<File> currentPosition, String name) throws IOException {
+	public static File createTextFile(ArrayList<File> currentPosition) throws IOException {
 		String path = String.valueOf(currentPosition.get(0).getParentFile());
-		File newFile = new File(path + name + ".txt");
-		if (!isMainRoot(currentPosition)) {
-			newFile.createNewFile();
-			printCurrentPosition(currentPosition);
-		} else {
-			System.out.println("Тут нельзя файл создать нельзя!");
+		String name = "";
+		File newFile = null;
+		boolean exception = true;
+		while (exception) {
+			try {
+				name = Common.reader.readLine();
+				newFile = new File(path + name + ".txt");
+				exception = false;
+				if (!isMainRoot(currentPosition)) {
+					newFile.createNewFile();
+				} else {
+					System.out.println("Тут нельзя файл создать нельзя!");
+				}
+			} catch (IOException e) {
+				exception = true;
+				System.out.print("Скорее всего в имени файла запрещенный символ. ");
+				System.out.println("Попробуйте снова:");
+			}
 		}
-
 		return newFile;
 	}
 
 	/**
 	 * Method for deleting file from chosen directory.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public static void deleteTextFile(ArrayList<File> currentPosition) throws IOException {
 		ArrayList<File> textFiles = new ArrayList<File>();
+		if (isTextFilesExists(currentPosition, textFiles)) {
+			System.out.println("Выберите номер файла, который хотите удалить.");
+			int selectedFileIndex = fileSelect(textFiles) - 1;
+			textFiles.get(selectedFileIndex).delete();
+		}
+	}
+
+	/**
+	 * Method for writing text into file in chosen directory.
+	 * 
+	 * @throws IOException
+	 */
+	public static void writeInFile(ArrayList<File> currentPosition) throws IOException {
+		ArrayList<File> textFiles = new ArrayList<File>();
+		if (isTextFilesExists(currentPosition, textFiles)) {
+			System.out.println("Выберите номер файла, который хотите дозаписать.");
+			int selectedFileIndex = fileSelect(textFiles) - 1;
+			File fileForEdit = textFiles.get(selectedFileIndex);
+			System.out.println("Введите текст, который хотите добавить:");
+			String text = Common.reader.readLine();
+			writeStrInFile(fileForEdit, text);
+		}
+	}
+
+	/*
+	 * Using Apache's library FileUtils for writing text in file.
+	 */
+	private static void writeStrInFile(File fileForEdit, String text) throws IOException {
+		String fileContent = FileUtils.readFileToString(fileForEdit);
+		FileUtils.writeStringToFile(fileForEdit, fileContent + text);
+	}
+
+	/*
+	 * Methods checks is in current directory exist text files.
+	 */
+	private static boolean isTextFilesExists(ArrayList<File> currentPosition, ArrayList<File> textFiles) {
 		for (File f : currentPosition) {
 			if (f.getName().indexOf(".txt") != -1) {
 				textFiles.add(f);
 			}
 		}
 		if (textFiles.isEmpty()) {
-			System.out.println("Нечего удалять!");
-		} else {
-			int count = 0;
-			System.out.println("Файлы, доступные для удаления.");
-			for (File f : textFiles) {
-				count++;
-				System.out.printf("%s) %s\n", count, f.getName());
-			}
-			System.out.println("Выберите номер файла, который хотите удалить:");
-			int menuItem = itemMenuEnter(count);
-			textFiles.get(menuItem - 1).delete();
+			System.out.println("Нечего изменять!");
+			return false;
 		}
+		return true;
 	}
 
-	/**
-	 * Method for writing text into file in chosen directory.
+	/*
+	 * Method allows get list of files for next actions with them.
 	 */
-	public static void writeInFile(File textFile) {
-
+	private static int fileSelect(ArrayList<File> textFiles) throws IOException {
+		int count = 0;
+		System.out.println("Файлы, доступные для изменения:");
+		for (File f : textFiles) {
+			count++;
+			System.out.printf("%s) %s\n", count, f.getName());
+		}
+		return itemMenuEnter(count);
 	}
 
 	/**
@@ -93,8 +141,7 @@ public class TextFiles {
 			switch (menuItem) {
 			case 1:
 				System.out.println("Введите название файла:");
-				String name = Common.reader.readLine();
-				createTextFile(currentPosition, name);
+				createTextFile(currentPosition);
 				exit = true;
 				continue;
 			case 2:
@@ -102,7 +149,7 @@ public class TextFiles {
 				exit = true;
 				continue;
 			case 3:
-//				writeInFile();
+				writeInFile(currentPosition);
 				exit = true;
 				continue;
 			case 4:

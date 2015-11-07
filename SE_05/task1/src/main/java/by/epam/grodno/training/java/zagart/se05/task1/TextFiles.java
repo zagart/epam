@@ -1,6 +1,7 @@
 package by.epam.grodno.training.java.zagart.se05.task1;
 
 import static by.epam.grodno.training.java.zagart.se05.task1.Common.itemMenuEnter;
+import static by.epam.grodno.training.java.zagart.se05.task1.Common.reader;
 import static by.epam.grodno.training.java.zagart.se05.task1.FileSystem.isMainRoot;
 import static by.epam.grodno.training.java.zagart.se05.task1.FileSystem.nextDirectory;
 import static by.epam.grodno.training.java.zagart.se05.task1.FileSystem.previousDirectory;
@@ -28,6 +29,7 @@ public class TextFiles {
 		while (exception) {
 			try {
 				name = Common.reader.readLine();
+				reader.close();
 				newFile = new File(path + name + ".txt");
 				exception = false;
 				if (!isMainRoot(currentPosition)) {
@@ -75,7 +77,8 @@ public class TextFiles {
 			int selectedFileIndex = fileSelect(textFiles) - 1;
 			File fileForEdit = textFiles.get(selectedFileIndex);
 			System.out.println("Введите текст, который хотите добавить:");
-			String text = Common.reader.readLine();
+			String text = reader.readLine();
+			reader.close();
 			writeStrInFile(fileForEdit, text);
 		}
 	}

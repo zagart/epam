@@ -48,8 +48,8 @@ public class Main {
 	 */
 	private static String readInput(String value) throws IOException {
 		value = reader.readLine();
-		reader.close();
 		if (value.isEmpty()) {
+			reader.close();
 			System.exit(0);
 		}
 		return value;

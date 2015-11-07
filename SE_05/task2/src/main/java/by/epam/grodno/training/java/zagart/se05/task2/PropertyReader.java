@@ -10,7 +10,7 @@ import java.util.TreeSet;
 /**
  * Class for work with *.properties files.
  */
-public class PropertyReader {
+final public class PropertyReader {
 
 	private static Properties propFile;
 

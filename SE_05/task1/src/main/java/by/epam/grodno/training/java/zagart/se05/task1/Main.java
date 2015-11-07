@@ -48,6 +48,7 @@ public class Main {
 
 				if (isMainRoot(currentPosition)) {
 					System.out.println("Работа приложения завершена.");
+					Common.reader.close();
 					System.exit(1);
 				}
 

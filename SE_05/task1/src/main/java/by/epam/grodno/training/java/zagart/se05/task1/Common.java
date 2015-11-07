@@ -23,7 +23,6 @@ public class Common {
 		while (exception) {
 			try {
 				selectedItem = Integer.parseInt(reader.readLine());
-				reader.close();
 				selectedItem = itemBoundCheck(selectedItem, maxItemValue);
 				exception = false;
 			} catch (NumberFormatException e) {
@@ -43,7 +42,6 @@ public class Common {
 			System.out.print("Неверный номер пункта меню. ");
 			System.out.println("Попробуйте снова: ");
 			selectedItem = Integer.parseInt(reader.readLine());
-			reader.close();
 		}
 		return selectedItem;
 	}

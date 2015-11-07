@@ -29,7 +29,6 @@ public class TextFiles {
 		while (exception) {
 			try {
 				name = Common.reader.readLine();
-				reader.close();
 				newFile = new File(path + name + ".txt");
 				exception = false;
 				if (!isMainRoot(currentPosition)) {
@@ -78,7 +77,6 @@ public class TextFiles {
 			File fileForEdit = textFiles.get(selectedFileIndex);
 			System.out.println("Введите текст, который хотите добавить:");
 			String text = reader.readLine();
-			reader.close();
 			writeStrInFile(fileForEdit, text);
 		}
 	}

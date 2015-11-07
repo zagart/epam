@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.TreeSet;
 
@@ -14,14 +13,6 @@ import java.util.TreeSet;
 public class PropertyReader {
 
 	private static Properties propFile;
-
-	/*
-	 * Method gets keys from file and put them into TreeSet object.
-	 */
-	private static TreeSet<String> getKeys() {
-		TreeSet<String> sortedPairs = new TreeSet<String>(propFile.stringPropertyNames());
-		return sortedPairs;
-	}
 
 	/*
 	 * Method loads file with pointed name and properties type.
@@ -36,42 +27,31 @@ public class PropertyReader {
 	}
 
 	/*
-	 * Method gets first (for now just first) value of the first key from
-	 * pointed file, if this file exists. If not and pointed file's name
-	 * correct, then new file with such name will be created.
+	 * Method gets key from pointed file, if this file exists. If not, and
+	 * pointed file's name correct, then new file with such name will be
+	 * created.
 	 */
-	public static void getKeyFromFileName(String fileName) throws IOException {
+	public static String getValueByKey(String fileName, String key) throws IOException  {
 		propFile = null;
 		try {
 			propFile = loadFile(fileName + ".properties");
 		} catch (FileNotFoundException e) {
-			boolean skip = false;
 			try {
 				new File(fileName + ".properties").createNewFile();
-			} catch (IOException e1) {
-				System.out.println("Невозможно создать файл с данным именем.");
-				skip = true;
-			}
-			if (!skip) {
 				propFile = loadFile(fileName + ".properties");
-				System.out.println("Указанный файл не был найден, потому создан новый.");
+				return "Указанный файл не был найден, потому создан новый.";
+			} catch (IOException e1) {
+				return "Невозможно создать файл с таким именем.";
 			}
 		}
 
 		if (propFile != null) {
-			try {
-				String firstElem = propFile.getProperty(getKeys().first());
-				if (firstElem.isEmpty()) {
-					System.out.println("Ключ не содержит значения!");
-				} else {
-					System.out.println("Значение первого ключа: " + firstElem);
-				}
-
-			} catch (NoSuchElementException e) {
-				System.out.println("Файл не содержит ключей!");
+			String value = propFile.getProperty(key);
+			if (value != null) {
+				return value;
 			}
 		}
-
+		return "Ключ не найден.";
 	}
-	
+
 }

@@ -44,7 +44,6 @@ public class Main {
 				}
 				if (selectedItem == 2) {
 					fileEditMenu(selectedItem, currentPosition);
-					currentPosition = reloadMenu(selectedItem, currentPosition);
 				}
 				if (selectedItem > 2) {
 					currentPosition = nextDirectory(currentPosition, selectedItem);

@@ -2,6 +2,7 @@ package by.epam.grodno.training.java.zagart.se05.task1;
 
 import static by.epam.grodno.training.java.zagart.se05.task1.Common.itemMenuEnter;
 import static by.epam.grodno.training.java.zagart.se05.task1.Common.reader;
+import static by.epam.grodno.training.java.zagart.se05.task1.FileSystem.getPath;
 import static by.epam.grodno.training.java.zagart.se05.task1.FileSystem.isMainRoot;
 import static by.epam.grodno.training.java.zagart.se05.task1.FileSystem.nextDirectory;
 import static by.epam.grodno.training.java.zagart.se05.task1.FileSystem.previousDirectory;
@@ -22,14 +23,48 @@ public class TextFiles {
 	 * Method for creating file in chosen directory.
 	 */
 	public static File createTextFile(ArrayList<File> currentPosition) throws IOException {
-		String path = String.valueOf(currentPosition.get(0).getParentFile());
+		String path = getPath(currentPosition.get(0));
+		System.out.println(path);
 		String name = "";
 		File newFile = null;
 		boolean exception = true;
 		while (exception) {
 			try {
 				name = Common.reader.readLine();
-				newFile = new File(path + name + ".txt");
+				newFile = new File(path + File.separator + name + ".txt");
+				exception = false;
+				if (!isMainRoot(currentPosition)) {
+					if (!newFile.exists()) {
+						newFile.createNewFile();
+					} else {
+						System.out.print("Файл не был создан. Такой файл");
+						System.out.println(" уже существует.");
+					}
+				} else {
+					System.out.println("Тут нельзя файл создать нельзя!");
+				}
+			} catch (IOException e) {
+				exception = true;
+				System.out.print("Скорее всего в имени файла запрещенный символ. ");
+				System.out.println("Попробуйте снова:");
+			}
+		}
+		return newFile;
+	}
+
+	/**
+	 * Method for creating file in empty directory.
+	 */
+	public static File createTextFile(ArrayList<File> currentPosition, String emptyFolder) throws IOException {
+		String path = getPath(currentPosition.get(0));
+		System.out.println(path);
+		String name = "";
+		File newFile = null;
+		boolean exception = true;
+		while (exception) {
+			try {
+				name = Common.reader.readLine();
+				newFile = new File(path + File.separator + emptyFolder + File.separator + name + ".txt");
 				exception = false;
 				if (!isMainRoot(currentPosition)) {
 					if (!newFile.exists()) {
@@ -120,8 +155,10 @@ public class TextFiles {
 
 	/**
 	 * Method for reloading currently opened directory after it's changing.
+	 * 
+	 * @throws IOException
 	 */
-	public static ArrayList<File> reloadMenu(int selectedItem, ArrayList<File> currentPosition) {
+	public static ArrayList<File> reloadMenu(int selectedItem, ArrayList<File> currentPosition) throws IOException {
 		if (!isMainRoot(currentPosition)) {
 			currentPosition = previousDirectory(currentPosition);
 			currentPosition = nextDirectory((byte) selectedItem, currentPosition);
@@ -159,6 +196,29 @@ public class TextFiles {
 				exit = true;
 				continue;
 			case 4:
+				exit = true;
+			}
+		}
+	}
+
+	/**
+	 * Method creates menu for creating file in empty folder.
+	 */
+	public static void fileEditMenuEmptyFolder(ArrayList<File> currentPosition, String emptyFolder) throws IOException {
+		boolean exit = false;
+		while (!exit) {
+			System.out.println("\t--Работа с текстовыми файлами.--");
+			System.out.println("1) Создать новый файл.");
+			System.out.println("2) Назад.");
+			int itemsMaxValue = 2;
+			int menuItem = (byte) (itemMenuEnter(itemsMaxValue));
+			switch (menuItem) {
+			case 1:
+				System.out.println("Введите название файла:");
+				createTextFile(currentPosition, emptyFolder);
+				exit = true;
+				continue;
+			case 2:
 				exit = true;
 			}
 		}

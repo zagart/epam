@@ -1,6 +1,9 @@
 package by.epam.grodno.training.java.zagart.se05.task1;
 
+import static by.epam.grodno.training.java.zagart.se05.task1.TextFiles.fileEditMenuEmptyFolder;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -59,9 +62,30 @@ public class FileSystem {
 	/**
 	 * Method which open chosen directory. In fact it rewrite files' list with
 	 * next in hierarchy files' list.
+	 * @throws IOException 
 	 */
-	public static ArrayList<File> nextDirectory(byte selectedItem, ArrayList<File> currentPosition) {
-		return makeArrayCopy(currentPosition.get(selectedItem).listFiles());
+	public static ArrayList<File> nextDirectory(byte selectedItem, ArrayList<File> currentPosition) throws IOException {
+		ArrayList<File> arrayCopy = makeArrayCopy(currentPosition.get(selectedItem).listFiles());
+		if (arrayCopy.isEmpty()) {
+			System.out.println("Папка пуста. Хотите создать новый файл?\n");
+			String emptyFolder = currentPosition.get(selectedItem).getName();
+			fileEditMenuEmptyFolder(currentPosition, emptyFolder);
+			return currentPosition;	
+		}
+		return arrayCopy;
+	}
+
+	/**
+	 * Method returns current file path without it's filename.
+	 * 
+	 * @param file
+	 * @return
+	 */
+	public static String getPath(File file) {
+		String path = file.getAbsolutePath();
+		int cutter = path.lastIndexOf(File.separator.toString());
+		path = path.substring(0, cutter);
+		return path;
 	}
 
 	/**
@@ -74,7 +98,7 @@ public class FileSystem {
 			currentPosition = makeArrayCopy(parent.listFiles());
 		} catch (NullPointerException e) {
 			currentPosition = getFileRoots();
-		}
+		} 
 		return currentPosition;
 	}
 

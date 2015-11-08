@@ -5,7 +5,10 @@ import static by.epam.grodno.training.java.zagart.se05.newtask1.Common.reader;
 import static by.epam.grodno.training.java.zagart.se05.newtask1.FileExplorer.getPath;
 import static by.epam.grodno.training.java.zagart.se05.newtask1.FileExplorer.isMainRoot;
 import static by.epam.grodno.training.java.zagart.se05.newtask1.FileExplorer.makeList;
+import static by.epam.grodno.training.java.zagart.se05.newtask1.FileExplorer.nextDirectory;
+import static by.epam.grodno.training.java.zagart.se05.newtask1.FileExplorer.previousDirectory;
 import static by.epam.grodno.training.java.zagart.se05.newtask1.FileExplorer.printCurrentPosition;
+import static by.epam.grodno.training.java.zagart.se05.newtask1.TextFiles.reloadMenu;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,14 +36,20 @@ public class TextFiles {
 			int menuItem = itemMenuEnter(itemsMaxValue);
 			switch (menuItem) {
 			case 1:
+				currentPosition = previousDirectory(currentPosition);
+				currentPosition = nextDirectory(currentPosition, selectedItem);
+				System.out.println("\nМеню обновлено...");
+				printCurrentPosition(currentPosition);
 				exit = true;
 				continue;
 			case 2:
 				createFile(getPath(currentPosition.get(selectedItem)));
+				currentPosition = reloadMenu(selectedItem, currentPosition);
 				exit = true;
 				continue;
 			case 3:
 				deleteTextFile(currentPosition);
+				currentPosition = reloadMenu(selectedItem, currentPosition);
 				exit = true;
 				continue;
 			case 4:
@@ -97,7 +106,7 @@ public class TextFiles {
 			}
 		}
 		if (textFiles.isEmpty()) {
-			System.out.println("В каталоге нет текстовых файлов!");
+			System.out.println("В каталоге нет текстовых файлов!\n");
 			return false;
 		}
 		return true;
@@ -148,9 +157,8 @@ public class TextFiles {
 	 */
 	public static ArrayList<File> reloadMenu(int selectedItem, ArrayList<File> currentPosition) throws IOException {
 		if (!isMainRoot(currentPosition)) {
-			System.out.println("Вот тут надо исправить потом...");
-			currentPosition = makeList(new File(getPath(currentPosition.get(selectedItem))).listFiles());
-			System.out.println("\nМеню обновлено...");
+			currentPosition = previousDirectory(currentPosition);
+			currentPosition = nextDirectory(currentPosition, selectedItem);
 			printCurrentPosition(currentPosition);
 		}
 		return currentPosition;

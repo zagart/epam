@@ -1,72 +1,73 @@
 package by.epam.grodno.training.java.zagart.se06.task2;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
-import java.util.HashMap;
+import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Properties;
+import java.util.Map.Entry;
+
+import org.apache.commons.io.FileUtils;
 
 public class PropertiesReader {
 
-	private static Map<String, String> map = new HashMap<String, String>();
-
 	/**
-	 * Method loads properties-file using path from input parameter. If only
-	 * name in parameter, then opens file from directory with project.
-	 * 
-	 * @param path
-	 */
-	private static Properties loadPropertiesFile(String path) {
-		Properties pFile = new Properties();
-		try {
-			File file = new File(path + ".properties");
-			InputStream inStream = new BufferedInputStream(new FileInputStream(file));
-			pFile.load(inStream);
-			inStream.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Файл не найден!");
-		} catch (IOException e) {
-			System.out.println("Ошибка при работе с файлом.");
-		}
-		return pFile;
-	}
-
-	/**
-	 * Method view properties-file content in Map object.
+	 * Method view properties-file content in Map object. Firstly it loads
+	 * properties-file strings into List object using Apache's library's method.
+	 * After it happens separating strings on keys and values and putting them
+	 * into map object.
 	 * 
 	 * @param path
 	 * @return
+	 * @throws UnsupportedEncodingException
 	 */
-	public static Map<String, String> getPropertiesMap(String path) {
-		Properties pFile = loadPropertiesFile(path);
-		Enumeration<?> keys = pFile.keys();
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement().toString();
-			String value = pFile.getProperty(key);
-			map.put(key, value);
+	public static Map<String, String> getMapFromFile(String path, String encoding) {
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		try {
+			File file = new File(path + ".properties");
+			@SuppressWarnings("unchecked")
+			List<String> list = FileUtils.readLines(file, encoding);
+			if (list.get(0).length() != 1) {
+				for (String s : list) {
+					int equalSignIndex = s.indexOf("=");
+					if (equalSignIndex != -1) {
+						String temp = s.substring(equalSignIndex - 1, equalSignIndex + 2);
+						s = s.replaceFirst(temp, temp.trim());
+						equalSignIndex = s.indexOf("=");
+						String key = s.substring(0, equalSignIndex);
+						String value = s.substring(equalSignIndex + 1, s.length());
+						map.put(key, value);
+					} else {
+						map.put(s, "");
+					}
+				}
+			} else {
+				System.out.println("Файл пуст.");
+			}
+		} catch (FileNotFoundException e) {
+			System.out.print("Указанный файл с расширением");
+			System.out.println(" *.properties не найден!");
+		} catch (UnsupportedEncodingException e) {
+			System.out.println("Неизвестная кодировка!");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return map;
 	}
 
 	/**
-	 * Method return
+	 * Method returns value by key from read properties-file.
 	 * 
 	 * @param path
 	 * @param key
 	 * @return
 	 */
-	public static String getValueOfKey(String key) {
-		if (!map.isEmpty()) {
-			return map.get(key);
-		} else {
-			System.out.println("Сначала нужно прочитать файл!");
-			return "";
-		}
+	public static String getValueByKey(String path, String encoding, String key) {
+		Map<String, String> map = new LinkedHashMap<String, String>(getMapFromFile(path, encoding));
+		return map.get(key);
 	}
 
 }

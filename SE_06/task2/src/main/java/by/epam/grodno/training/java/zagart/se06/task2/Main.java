@@ -1,9 +1,8 @@
 package by.epam.grodno.training.java.zagart.se06.task2;
 
-import static by.epam.grodno.training.java.zagart.se06.task2.PropertiesReader.getPropertiesMap;
-import static by.epam.grodno.training.java.zagart.se06.task2.PropertiesReader.getValueOfKey;
-
+import static by.epam.grodno.training.java.zagart.se06.task2.PropertiesReader.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -24,10 +23,17 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		Map<String, String> map = getPropertiesMap("newFile");
+		Map<String, String> map = getMapFromFile("newFile", "UTF-8");
 		printMap(map);
-		System.out.println(getValueOfKey("key2"));
-
+		
+		String value = getValueByKey("newFile", "UTF-8","1");
+		System.out.println("\nРезультат поиска по ключу:");
+		if (value != null) {
+			System.out.println(value);
+		} else {
+			System.out.println("Ключ не найден.");
+		}
+		
 	}
 
 	/*

@@ -1,8 +1,11 @@
 package by.epam.grodno.training.java.zagart.se06.task2;
 
-import static by.epam.grodno.training.java.zagart.se06.task2.PropertiesReader.*;
+import static by.epam.grodno.training.java.zagart.se06.task2.PropertiesReader.getMapFromFile;
+import static by.epam.grodno.training.java.zagart.se06.task2.PropertiesReader.getValueByKey;
+
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,17 +26,25 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		Map<String, String> map = getMapFromFile("newFile", "UTF-8");
 		printMap(map);
 		
-		String value = getValueByKey("newFile", "UTF-8","1");
-		System.out.println("\nРезультат поиска по ключу:");
-		if (value != null) {
-			System.out.println(value);
-		} else {
-			System.out.println("Ключ не найден.");
+		while (true) {
+			String console = reader.readLine();
+			if (console.isEmpty()) {
+				System.out.println("Работа приложения завершена.");
+				System.exit(0);
+			} else {
+				String value = getValueByKey("newFile", "UTF-8", console);
+				System.out.println("\nРезультат поиска по ключу:");
+				if (value != null) {
+					System.out.println(value + "\n");
+				} else {
+					System.out.println("Ключ не найден.\n");
+				}
+			}
 		}
-		
 	}
 
 	/*

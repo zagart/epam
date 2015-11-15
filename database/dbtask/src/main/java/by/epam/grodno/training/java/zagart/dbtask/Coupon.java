@@ -6,7 +6,14 @@ public class Coupon {
 	private int value;
 	private int shopId;
 	private int userId;
+	private int userCouponQuantity;
 	
+	public int getUserCouponQuantity() {
+		return userCouponQuantity;
+	}
+	public void setUserCouponQuantity(int userCouponQuantity) {
+		this.userCouponQuantity = userCouponQuantity;
+	}
 	public int getId() {
 		return id;
 	}

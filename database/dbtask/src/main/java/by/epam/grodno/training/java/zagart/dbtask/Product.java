@@ -8,7 +8,21 @@ public class Product {
 	private int cost;
 	private int shopId;
 	private int deliverPrice;
+	private int productsQuantityLeft;
+	private int productsQuantityForOrder;
 	
+	public int getProductsQuantityLeft() {
+		return productsQuantityLeft;
+	}
+	public void setProductsQuantityLeft(int productsQuantityLeft) {
+		this.productsQuantityLeft = productsQuantityLeft;
+	}
+	public int getProductsQuantityForOrder() {
+		return productsQuantityForOrder;
+	}
+	public void setProductsQuantityForOrder(int productsQuantityForOrder) {
+		this.productsQuantityForOrder = productsQuantityForOrder;
+	}
 	public int getId() {
 		return id;
 	}

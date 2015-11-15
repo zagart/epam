@@ -5,9 +5,9 @@ CREATE TABLE "user" (
 	"login" character varying(100) NOT NULL,
 	"e-mail" character varying(100) NOT NULL,
 	"password" character varying(100) NOT NULL,
-	"balance" int(100) NOT NULL,
-	"country_id" int(100) NOT NULL,
-	CONSTRAINT user_pk PRIMARY KEY ("id","first_name","second_name","login","e-mail","password","balance")
+	"balance" integer NOT NULL,
+	"country_id" integer NOT NULL,
+	CONSTRAINT user_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -17,8 +17,8 @@ CREATE TABLE "user" (
 CREATE TABLE "country" (
 	"id" serial(100) NOT NULL,
 	"name" character varying(100) NOT NULL,
-	"iso_code" int(100) NOT NULL,
-	CONSTRAINT country_pk PRIMARY KEY ("id","name","iso_code")
+	"iso_code" integer NOT NULL,
+	CONSTRAINT country_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -26,11 +26,11 @@ CREATE TABLE "country" (
 
 
 CREATE TABLE "black_list" (
-	"id" int(100) NOT NULL,
-	"user_id" int(100) NOT NULL,
+	"id" integer NOT NULL,
+	"user_id" integer NOT NULL,
 	"date_of_blocking" DATE(100) NOT NULL,
 	"date_of_unlocking" DATE(100) NOT NULL,
-	CONSTRAINT black_list_pk PRIMARY KEY ("id","date_of_blocking","date_of_unlocking")
+	CONSTRAINT black_list_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -41,7 +41,7 @@ CREATE TABLE "shop" (
 	"id" serial(100) NOT NULL,
 	"name" character varying(100) NOT NULL,
 	"description" character varying(100) NOT NULL,
-	CONSTRAINT shop_pk PRIMARY KEY ("id","name","description")
+	CONSTRAINT shop_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -52,10 +52,12 @@ CREATE TABLE "product" (
 	"id" serial(100) NOT NULL,
 	"name" character varying(100) NOT NULL,
 	"description" character varying(100) NOT NULL,
-	"cost" int(100) NOT NULL,
-	"shop_id" int(100) NOT NULL,
-	"deliver_price" int(100) NOT NULL,
-	CONSTRAINT product_pk PRIMARY KEY ("id","name","description","cost","deliver_price")
+	"cost" integer NOT NULL,
+	"shop_id" integer NOT NULL,
+	"deliver_price" integer NOT NULL,
+	"products_quantity_left" integer NOT NULL,
+	"product_quantity_for_order" integer NOT NULL,
+	CONSTRAINT product_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -64,10 +66,11 @@ CREATE TABLE "product" (
 
 CREATE TABLE "coupon" (
 	"id" serial(100) NOT NULL,
-	"value" int(100) NOT NULL,
-	"shop_id" int(100) NOT NULL,
-	"user_id" int(100) NOT NULL,
-	CONSTRAINT coupon_pk PRIMARY KEY ("id","value")
+	"value" integer NOT NULL,
+	"user_id" integer NOT NULL,
+	"shop_id" integer NOT NULL,
+	"user_coupon_quantity" integer NOT NULL,
+	CONSTRAINT coupon_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -76,11 +79,10 @@ CREATE TABLE "coupon" (
 
 CREATE TABLE "order" (
 	"id" serial(100) NOT NULL,
-	"cost" int(100) NOT NULL,
-	"user_id" int(100) NOT NULL,
-	"product_id" int(100) NOT NULL,
-	"product_quantity" int(100) NOT NULL,
-	CONSTRAINT order_pk PRIMARY KEY ("id","cost","product_quantity")
+	"cost" integer NOT NULL,
+	"user_id" integer NOT NULL,
+	"product_id" integer NOT NULL,
+	CONSTRAINT order_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -95,8 +97,8 @@ ALTER TABLE "black_list" ADD CONSTRAINT "black_list_fk0" FOREIGN KEY (user_id) R
 
 ALTER TABLE "product" ADD CONSTRAINT "product_fk0" FOREIGN KEY (shop_id) REFERENCES shop(id);
 
-ALTER TABLE "coupon" ADD CONSTRAINT "coupon_fk0" FOREIGN KEY (shop_id) REFERENCES shop(id);
-ALTER TABLE "coupon" ADD CONSTRAINT "coupon_fk1" FOREIGN KEY (user_id) REFERENCES user(id);
+ALTER TABLE "coupon" ADD CONSTRAINT "coupon_fk0" FOREIGN KEY (user_id) REFERENCES user(id);
+ALTER TABLE "coupon" ADD CONSTRAINT "coupon_fk1" FOREIGN KEY (shop_id) REFERENCES shop(id);
 
 ALTER TABLE "order" ADD CONSTRAINT "order_fk0" FOREIGN KEY (user_id) REFERENCES user(id);
 ALTER TABLE "order" ADD CONSTRAINT "order_fk1" FOREIGN KEY (product_id) REFERENCES product(id);

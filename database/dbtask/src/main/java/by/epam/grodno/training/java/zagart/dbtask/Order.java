@@ -6,7 +6,6 @@ public class Order {
 	private int cost;
 	private int userId;
 	private int productId;
-	private int productQuantity;
 	
 	public int getId() {
 		return id;
@@ -31,12 +30,6 @@ public class Order {
 	}
 	public void setProductId(int productId) {
 		this.productId = productId;
-	}
-	public int getProductQuantity() {
-		return productQuantity;
-	}
-	public void setProductQuantity(int productQuantity) {
-		this.productQuantity = productQuantity;
 	}
 	
 }

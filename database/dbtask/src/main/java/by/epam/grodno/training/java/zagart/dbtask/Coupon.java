@@ -1,9 +1,11 @@
 package by.epam.grodno.training.java.zagart.dbtask;
 
+import java.math.BigDecimal;
+
 public class Coupon {
 	
 	private int id;
-	private int value;
+	private BigDecimal value;
 	private int shopId;
 	private int userId;
 	private int userCouponQuantity;
@@ -20,10 +22,10 @@ public class Coupon {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getValue() {
+	public BigDecimal getValue() {
 		return value;
 	}
-	public void setValue(int value) {
+	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
 	public int getShopId() {

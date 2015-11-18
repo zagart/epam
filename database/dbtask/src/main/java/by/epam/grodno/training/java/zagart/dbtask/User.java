@@ -1,14 +1,16 @@
 package by.epam.grodno.training.java.zagart.dbtask;
 
+import java.math.BigDecimal;
+
 public class User {
 
 	private int id;
 	private String firstName;
-	private String secondName;
+	private String lastName;
 	private String login;
 	private String email;
 	private String password;
-	private int balance;
+	private BigDecimal balance;
 	private int countryId;
 	
 	public int getId() {
@@ -24,10 +26,10 @@ public class User {
 		this.firstName = firstName;
 	}
 	public String getSecondName() {
-		return secondName;
+		return lastName;
 	}
 	public void setSecondName(String secondName) {
-		this.secondName = secondName;
+		this.lastName = secondName;
 	}
 	public String getLogin() {
 		return login;
@@ -47,10 +49,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 	public int getCountryId() {

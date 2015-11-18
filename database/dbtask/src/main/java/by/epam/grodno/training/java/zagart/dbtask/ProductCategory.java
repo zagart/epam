@@ -1,25 +1,12 @@
 package by.epam.grodno.training.java.zagart.dbtask;
 
-public class Shop {
-	
+public class ProductCategory {
+
 	private int id;
 	private String name;
 	private String description;
-	private String phoneNumber;
-	private int rating;
+	private int productId;
 	
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	public int getRating() {
-		return rating;
-	}
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
 	public int getId() {
 		return id;
 	}
@@ -38,5 +25,11 @@ public class Shop {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	
 }

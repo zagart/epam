@@ -1,27 +1,22 @@
 package by.epam.grodno.training.java.zagart.dbtask;
 
+import java.math.BigDecimal;
+
 public class Product {
 	
 	private int id;
 	private String name;
 	private String description;
-	private int cost;
+	private BigDecimal cost;
 	private int shopId;
-	private int deliverPrice;
+	private BigDecimal deliverPrice;
 	private int productsQuantityLeft;
-	private int productsQuantityForOrder;
 	
 	public int getProductsQuantityLeft() {
 		return productsQuantityLeft;
 	}
 	public void setProductsQuantityLeft(int productsQuantityLeft) {
 		this.productsQuantityLeft = productsQuantityLeft;
-	}
-	public int getProductsQuantityForOrder() {
-		return productsQuantityForOrder;
-	}
-	public void setProductsQuantityForOrder(int productsQuantityForOrder) {
-		this.productsQuantityForOrder = productsQuantityForOrder;
 	}
 	public int getId() {
 		return id;
@@ -41,10 +36,10 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getCost() {
+	public BigDecimal getCost() {
 		return cost;
 	}
-	public void setCost(int cost) {
+	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
 	public int getShopId() {
@@ -53,10 +48,10 @@ public class Product {
 	public void setShopId(int shopId) {
 		this.shopId = shopId;
 	}
-	public int getDeliverPrice() {
+	public BigDecimal getDeliverPrice() {
 		return deliverPrice;
 	}
-	public void setDeliverPrice(int deliverPrice) {
+	public void setDeliverPrice(BigDecimal deliverPrice) {
 		this.deliverPrice = deliverPrice;
 	}
 

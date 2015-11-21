@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.epam.training</groupId>
-	<artifactId>parent-project</artifactId>
+	<groupId>by.grodno.zagart</groupId>
+	<artifactId>onlineshop</artifactId>
 	<version>1.0.0</version>
 
 	<packaging>pom</packaging>
@@ -12,7 +13,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<common.project.version>1.0</common.project.version>
 		<spring.version>4.0.3.RELEASE</spring.version>
-		<hibernate.version>4.3.8.Final</hibernate.version>
 		<wicket.version>6.19.0</wicket.version>
 		<jetty.version>7.6.13.v20130916</jetty.version>
 	</properties>
@@ -21,24 +21,24 @@
 		<module>dataaccess</module>
 		<module>services</module>
 		<module>webapp</module>
-    <module>webQQQ</module>
-  </modules>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
+
 			<!-- Project modules -->
 			<dependency>
-				<groupId>com.epam.training</groupId>
+				<groupId>by.grodno.zagart</groupId>
 				<artifactId>dataaccess</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
-				<groupId>com.epam.training</groupId>
+				<groupId>by.grodno.zagart</groupId>
 				<artifactId>services</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
-				<groupId>com.epam.training</groupId>
+				<groupId>by.grodno.zagart</groupId>
 				<artifactId>webapp</artifactId>
 				<version>1.0.0</version>
 			</dependency>
@@ -70,9 +70,44 @@
 				<version>${spring.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.1</version>
+			</dependency>
 
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>9.3-1100-jdbc41</version>
+			</dependency>
 
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.4</version>
+			</dependency>
 
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-jcl</artifactId>
+				<version>2.1</version>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>
@@ -101,10 +136,6 @@
 
 
 	<build>
-
-		<plugins>
-
-		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>

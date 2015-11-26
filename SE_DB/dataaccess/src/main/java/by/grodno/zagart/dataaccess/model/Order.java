@@ -10,13 +10,13 @@ public class Order {
 	private Date dateOfDeliver;
 	private String orderStatus;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public long getShoppingCartId() {
+	public Long getShoppingCartId() {
 		return shoppingCartId;
 	}
 	public void setShoppingCartId(long shoppingCartId) {

@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 
 public class Coupon {
 	
-	private int id;
+	private long id;
 	private BigDecimal value;
-	private int shopId;
-	private int userId;
+	private long shopId;
+	private long userId;
 	private int userCouponQuantity;
 	
 	public int getUserCouponQuantity() {
@@ -16,10 +16,10 @@ public class Coupon {
 	public void setUserCouponQuantity(int userCouponQuantity) {
 		this.userCouponQuantity = userCouponQuantity;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public BigDecimal getValue() {
@@ -28,16 +28,16 @@ public class Coupon {
 	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
-	public int getShopId() {
+	public long getShopId() {
 		return shopId;
 	}
-	public void setShopId(int shopId) {
+	public void setShopId(long shopId) {
 		this.shopId = shopId;
 	}
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

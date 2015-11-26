@@ -4,9 +4,10 @@ import by.grodno.zagart.dataaccess.model.User;
 
 public interface UserService {
 
-	void insertOrUpdate(User user);
+	void deleteUserById(Long id);
 
-	void registerUser(String firstName, String lastName, String login, String email, String password);
+	User getUserById(Long id);
+
+	void registerUser(String firstName, String lastName, String login, String email, String password, Long countryId);
 	
-	User get(Long id);
 }

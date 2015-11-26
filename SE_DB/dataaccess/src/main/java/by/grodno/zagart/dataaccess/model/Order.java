@@ -4,22 +4,22 @@ import java.util.Date;
 
 public class Order {
 
-	private int id;
-	private int shoppingCartId;
+	private long id;
+	private long shoppingCartId;
 	private Date dateOfOrder;
 	private Date dateOfDeliver;
 	private String orderStatus;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-	public int getShoppingCartId() {
+	public long getShoppingCartId() {
 		return shoppingCartId;
 	}
-	public void setShoppingCartId(int shoppingCartId) {
+	public void setShoppingCartId(long shoppingCartId) {
 		this.shoppingCartId = shoppingCartId;
 	}
 	public Date getDateOfOrder() {

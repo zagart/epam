@@ -3,22 +3,24 @@ package by.grodno.zagart.dataaccess.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.springframework.stereotype.Repository;
+
 public class User {
 
-	private int id;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private String login;
 	private String email;
 	private String password;
 	private BigDecimal balance;
-	private int countryId;
+	private	long countryId;
 	private Date dateOfCreation;
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getFirstName() {
@@ -57,10 +59,10 @@ public class User {
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
-	public int getCountryId() {
+	public Long getCountryId() {
 		return countryId;
 	}
-	public void setCountryId(int countryId) {
+	public void setCountryId(Long countryId) {
 		this.countryId = countryId;
 	}
 	public Object getCreationDate() {

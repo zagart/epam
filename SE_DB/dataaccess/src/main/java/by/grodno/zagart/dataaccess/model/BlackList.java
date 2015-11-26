@@ -4,21 +4,21 @@ import java.sql.Date;
 
 public class BlackList {
 	
-	private int id;
-	private int userId;
+	private long id;
+	private long userId;
 	private Date dateOfBlocking;
 	private Date dateOfUnlocking;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 	public Date getDateOfBlocking() {

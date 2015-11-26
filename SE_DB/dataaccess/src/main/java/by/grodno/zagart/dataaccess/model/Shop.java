@@ -2,7 +2,7 @@ package by.grodno.zagart.dataaccess.model;
 
 public class Shop {
 	
-	private int id;
+	private long id;
 	private String name;
 	private String description;
 	private String phoneNumber;
@@ -20,10 +20,10 @@ public class Shop {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {

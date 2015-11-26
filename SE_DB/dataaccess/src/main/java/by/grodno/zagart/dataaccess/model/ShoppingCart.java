@@ -4,28 +4,28 @@ import java.math.BigDecimal;
 
 public class ShoppingCart {
 	
-	private int id;
-	private int userId;
-	private int productId;
+	private long id;
+	private long userId;
+	private long productId;
 	private int productQuantity;
 	private BigDecimal cost;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 	public int getProductQuantity() {

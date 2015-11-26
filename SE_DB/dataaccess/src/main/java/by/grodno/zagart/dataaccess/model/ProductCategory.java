@@ -2,15 +2,15 @@ package by.grodno.zagart.dataaccess.model;
 
 public class ProductCategory {
 
-	private int id;
+	private long id;
 	private String name;
 	private String description;
-	private int productId;
+	private long productId;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -25,10 +25,10 @@ public class ProductCategory {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 	

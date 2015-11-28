@@ -2,6 +2,7 @@ package by.grodno.zagart.dataaccess.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import by.grodno.zagart.dataaccess.dao.OrderDao;
 import by.grodno.zagart.dataaccess.dao.mapper.OrderMapper;
@@ -13,6 +14,7 @@ import by.grodno.zagart.dataaccess.model.Order;
  * @author zagart
  *
  */
+@Repository
 public class OrderDaoImpl implements OrderDao {
 
 	@Autowired
@@ -22,16 +24,16 @@ public class OrderDaoImpl implements OrderDao {
 	 * Method returns order table's row with pointed id column's value.
 	 */
 	@Override
-	public Order getById(Long id) {
-		return jdbc.queryForObject("SELECT * FROM order WHERE id = " + id, new OrderMapper());
+	public Order getById(Integer id) {
+		return jdbc.queryForObject("SELECT * FROM \"order\" WHERE id = ?", new Object[] { id }, new OrderMapper());
 	}
 
 	/**
 	 * Method lets delete order table's row by pointed id column's value.
 	 */
 	@Override
-	public void deleteById(Long id) {
-		jdbc.update("DELETE FROM order WHERE id = " + id);
+	public void deleteById(Integer id) {
+		jdbc.update("DELETE FROM \"order\" WHERE id = " + id);
 	}
 
 	/**
@@ -40,10 +42,9 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public void insert(Order order) {
 		jdbc.update(
-				"INSERT INTO order (id, shopping_cart_id, date_of_order, date_of_deliver, order_status) VALUES (?,?,?,?,?)",
+				"INSERT INTO \"order\" (id, shopping_cart_id, date_of_order, date_of_deliver, order_status) VALUES (?,?,?,?,?)",
 				order.getId(), order.getShoppingCartId(), order.getDateOfOrder(), order.getDateOfDeliver(),
 				order.getOrderStatus());
-		;
 	}
 
 }

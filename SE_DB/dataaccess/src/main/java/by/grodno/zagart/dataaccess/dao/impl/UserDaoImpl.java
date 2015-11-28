@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDao {
 	 * Method for getting User object with pointed id value from table.
 	 */
 	@Override
-	public User getById(Long id) {
+	public User getById(Integer id) {
 		return jdbcTemplate.queryForObject("SELECT * FROM user_account WHERE id = " + id, new UserMapper());
 	}
 
@@ -30,14 +30,14 @@ public class UserDaoImpl implements UserDao {
 		jdbcTemplate.update(
 				"INSERT INTO user_account (first_name, last_name, login, e_mail, password, balance, country_id, date_of_creation) VALUES (?,?,?,?,?,?,?,?)",
 				user.getFirstName(), user.getLastName(), user.getLogin(), user.getEmail(), user.getPassword(),
-				user.getBalance(), user.getCountryId(), user.getCreationDate());
+				user.getBalance(), user.getCountryId(), user.getDateOfCreation());
 	}
 
 	/**
 	 * Method for deleting user from table by this user's id value.
 	 */
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(Integer id) {
 		jdbcTemplate.update("DELETE FROM user_account WHERE id = " + id);
 	}
 

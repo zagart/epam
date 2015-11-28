@@ -3,6 +3,7 @@ package by.grodno.zagart.dataaccess.dao.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 
 import by.grodno.zagart.dataaccess.model.Country;
@@ -14,15 +15,18 @@ import by.grodno.zagart.dataaccess.model.Country;
  *
  */
 public class CountryMapper implements RowMapper<Country> {
+	
+	@Autowired
+	Country country;
+	
 	@Override
 	public Country mapRow(ResultSet rs, int rowNum) throws SQLException {
-		long id = rs.getLong("id");
+		Integer id = rs.getInt("id");
 		String name = rs.getString("name");
-		int isoCode = rs.getInt("iso_code");
-		Country country = new Country();
+		Integer isoCode = rs.getInt("iso_code");
 		country.setId(id);
-		country.setIsoCode(isoCode);
 		country.setName(name);
+		country.setIsoCode(isoCode);
 		return country;
 	}
 }

@@ -2,9 +2,9 @@ package by.grodno.zagart.dataaccess.dao.generic;
 
 public interface GenericDAO <TYPE> {
 	
-	TYPE getById(Long id);
+	TYPE getById(Integer id);
 	
-	void deleteById(Long id);
+	void deleteById(Integer id);
 
 	void insert(TYPE typeObject);
 	

@@ -2,7 +2,7 @@ package by.grodno.zagart.dataaccess.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import by.grodno.zagart.dataaccess.dao.CountryDao;
 import by.grodno.zagart.dataaccess.dao.mapper.CountryMapper;
@@ -15,7 +15,7 @@ import by.grodno.zagart.dataaccess.model.Country;
  * @author zagart
  *
  */
-@Service
+@Repository
 public class CountryDaoImpl implements CountryDao {
 
 	@Autowired
@@ -25,16 +25,16 @@ public class CountryDaoImpl implements CountryDao {
 	 * Method for getting Country object by pointed id value.
 	 */
 	@Override
-	public Country getById(Long id) {
-		return jdbc.queryForObject("SELECT * FROM country WHERE id = " + id, new CountryMapper());
+	public Country getById(Integer id) {
+		return jdbc.queryForObject("SELECT * FROM country WHERE id = ?", new Object[] { id }, new CountryMapper());
 	}
 
 	/**
 	 * Method for deleting Country row from table by it's id value.
 	 */
 	@Override
-	public void deleteById(Long id) {
-		jdbc.execute("DELETE FROM country WHERE id = " + id);
+	public void deleteById(Integer id) {
+		jdbc.update("DELETE FROM country WHERE id = " + id);
 	}
 
 	/**

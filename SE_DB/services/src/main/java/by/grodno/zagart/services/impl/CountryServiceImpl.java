@@ -15,12 +15,12 @@ public class CountryServiceImpl implements CountryService {
 	
 	
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(Integer id) {
 		countryDao.deleteById(id);
 	}
 
 	@Override
-	public Country getById(Long id) {
+	public Country getById(Integer id) {
 		return countryDao.getById(id);
 	}
 

@@ -6,8 +6,8 @@ public interface CountryService {
 	
 	void insert(Country obj);
 
-	void deleteById(Long id);
+	void deleteById(Integer id);
 
-	Country getById(Long id);
+	Country getById(Integer id);
 
 }

@@ -1,15 +1,18 @@
 package by.grodno.zagart.dataaccess.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Country {
 	
-	private long id;
+	private int id;
 	private String name;
 	private int isoCode;
 	
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {

@@ -4,10 +4,10 @@ import by.grodno.zagart.dataaccess.model.Order;
 
 public interface OrderService {
 
-	Order getOrderById(long id);
+	Order getOrderById(Integer id);
 	
-	void deleteOrderById(long id);
-	
+	void deleteOrderById(Integer id);
+		
 	void insertNewOrder(Order order);
 	
 }

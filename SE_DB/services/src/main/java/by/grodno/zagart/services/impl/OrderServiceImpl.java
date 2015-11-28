@@ -3,7 +3,7 @@ package by.grodno.zagart.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import by.grodno.zagart.dataaccess.dao.OrderDao;
+import by.grodno.zagart.dataaccess.dao.impl.OrderDaoImpl;
 import by.grodno.zagart.dataaccess.model.Order;
 import by.grodno.zagart.services.OrderService;
 
@@ -18,13 +18,13 @@ import by.grodno.zagart.services.OrderService;
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
-	private OrderDao orderDao;
+	private OrderDaoImpl orderDao;
 
 	/**
 	 * Getting order by id.
 	 */
 	@Override
-	public Order getOrderById(long id) {
+	public Order getOrderById(Integer id) {
 		return orderDao.getById(id);
 	}
 
@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
 	 * Deleting order by id.
 	 */
 	@Override
-	public void deleteOrderById(long id) {
+	public void deleteOrderById(Integer id) {
 		orderDao.deleteById(id);
 	}
 

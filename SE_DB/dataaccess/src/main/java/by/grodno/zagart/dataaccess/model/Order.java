@@ -2,24 +2,27 @@ package by.grodno.zagart.dataaccess.model;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Order {
 
-	private long id;
-	private long shoppingCartId;
+	private Integer id;
+	private Integer shoppingCartId;
 	private Date dateOfOrder;
 	private Date dateOfDeliver;
 	private String orderStatus;
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Long getShoppingCartId() {
+	public Integer getShoppingCartId() {
 		return shoppingCartId;
 	}
-	public void setShoppingCartId(long shoppingCartId) {
+	public void setShoppingCartId(Integer shoppingCartId) {
 		this.shoppingCartId = shoppingCartId;
 	}
 	public Date getDateOfOrder() {

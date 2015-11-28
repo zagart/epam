@@ -6,39 +6,32 @@ public class ShoppingCart {
 	
 	private long id;
 	private long userId;
-	private long productId;
-	private int productQuantity;
-	private BigDecimal cost;
+	private long orderListId;
+	private BigDecimal totalTost;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public long getProductId() {
-		return productId;
+	public Long getProductListId() {
+		return orderListId;
 	}
-	public void setProductId(long productId) {
-		this.productId = productId;
+	public void setProductListId(Long productListId) {
+		this.orderListId = productListId;
 	}
-	public int getProductQuantity() {
-		return productQuantity;
+	public BigDecimal getTotalTost() {
+		return totalTost;
 	}
-	public void setProductQuantity(int productQuantity) {
-		this.productQuantity = productQuantity;
-	}
-	public BigDecimal getCost() {
-		return cost;
-	}
-	public void setCost(BigDecimal cost) {
-		this.cost = cost;
+	public void setTotalTost(BigDecimal totalTost) {
+		this.totalTost = totalTost;
 	}
 
 }

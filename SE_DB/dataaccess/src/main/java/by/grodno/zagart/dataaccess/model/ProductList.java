@@ -1,9 +1,6 @@
 package by.grodno.zagart.dataaccess.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class OrderList {
+public class ProductList {
 
 	private Integer id;
 	private Integer productId;

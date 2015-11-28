@@ -16,11 +16,9 @@ import by.grodno.zagart.dataaccess.model.Country;
  */
 public class CountryMapper implements RowMapper<Country> {
 	
-	@Autowired
-	Country country;
-	
 	@Override
 	public Country mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Country country = new Country();
 		Integer id = rs.getInt("id");
 		String name = rs.getString("name");
 		Integer isoCode = rs.getInt("iso_code");

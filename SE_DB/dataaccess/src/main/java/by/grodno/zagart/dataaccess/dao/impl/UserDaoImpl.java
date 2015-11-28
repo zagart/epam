@@ -26,11 +26,13 @@ public class UserDaoImpl implements UserDao {
 	 * Method for adding new User object into table.
 	 */
 	@Override
-	public void insert(User user) {
-		jdbcTemplate.update(
-				"INSERT INTO user_account (first_name, last_name, login, e_mail, password, balance, country_id, date_of_creation) VALUES (?,?,?,?,?,?,?,?)",
-				user.getFirstName(), user.getLastName(), user.getLogin(), user.getEmail(), user.getPassword(),
-				user.getBalance(), user.getCountryId(), user.getDateOfCreation());
+	public Integer insert(User user) {
+		int id = jdbcTemplate.queryForObject(
+				"INSERT INTO user_account (first_name, last_name, login, e_mail, password, balance, country_id, date_of_creation) VALUES (?,?,?,?,?,?,?,?) RETURNING id",
+				new Object[] { user.getFirstName(), user.getLastName(), user.getLogin(), user.getEmail(),
+						user.getPassword(), user.getBalance(), user.getCountryId(), user.getDateOfCreation() },
+				Integer.class);
+		return id;
 	}
 
 	/**

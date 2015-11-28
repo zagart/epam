@@ -38,13 +38,14 @@ public class OrderDaoImpl implements OrderDao {
 
 	/**
 	 * Method adds new row into order table.
-	 */
+	 */	
 	@Override
-	public void insert(Order order) {
-		jdbc.update(
-				"INSERT INTO \"order\" (id, shopping_cart_id, date_of_order, date_of_deliver, order_status) VALUES (?,?,?,?,?)",
-				order.getId(), order.getShoppingCartId(), order.getDateOfOrder(), order.getDateOfDeliver(),
-				order.getOrderStatus());
+	public Integer insert(Order order) {
+		return jdbc.queryForObject(
+				"INSERT INTO \"order\" (shopping_cart_id, date_of_order, date_of_deliver, order_status) VALUES (?,?,?,?) RETURNING id",
+				new Object[] { order.getShoppingCartId(), order.getDateOfOrder(), order.getDateOfDeliver(),
+						order.getOrderStatus() },
+				Integer.class);
 	}
 
 }

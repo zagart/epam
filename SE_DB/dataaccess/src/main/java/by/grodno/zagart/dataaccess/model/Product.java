@@ -4,24 +4,19 @@ import java.math.BigDecimal;
 
 public class Product {
 	
-	private long id;
+	private Integer id;
 	private String name;
 	private String description;
 	private BigDecimal cost;
-	private long shopId;
-	private BigDecimal deliverPrice;
-	private int productsQuantityLeft;
+	private Integer shopId;
+	private BigDecimal deliverCost;
+	private Integer productsQuantityLeft;
+	private Short rating;
 	
-	public int getProductsQuantityLeft() {
-		return productsQuantityLeft;
-	}
-	public void setProductsQuantityLeft(int productsQuantityLeft) {
-		this.productsQuantityLeft = productsQuantityLeft;
-	}
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -42,17 +37,29 @@ public class Product {
 	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
-	public long getShopId() {
+	public Integer getShopId() {
 		return shopId;
 	}
-	public void setShopId(long shopId) {
+	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
 	}
-	public BigDecimal getDeliverPrice() {
-		return deliverPrice;
+	public BigDecimal getDeliverCost() {
+		return deliverCost;
 	}
-	public void setDeliverPrice(BigDecimal deliverPrice) {
-		this.deliverPrice = deliverPrice;
+	public void setDeliverCost(BigDecimal deliverPrice) {
+		this.deliverCost = deliverPrice;
+	}
+	public Integer getProductsQuantityLeft() {
+		return productsQuantityLeft;
+	}
+	public void setProductsQuantityLeft(Integer productsQuantityLeft) {
+		this.productsQuantityLeft = productsQuantityLeft;
+	}
+	public Short getRating() {
+		return rating;
+	}
+	public void setRating(Short rating) {
+		this.rating = rating;
 	}
 
 }

@@ -4,10 +4,10 @@ import by.grodno.zagart.dataaccess.model.Country;
 
 public interface CountryService {
 	
-	void insert(Country obj);
+	Integer addCountry(Country obj);
 
-	void deleteById(Integer id);
+	void deleteCountryById(Integer id);
 
-	Country getById(Integer id);
+	Country getCountryById(Integer id);
 
 }

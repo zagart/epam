@@ -3,19 +3,16 @@ package by.grodno.zagart.dataaccess.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class User {
 
-	private int id;
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String login;
 	private String email;
 	private String password;
 	private BigDecimal balance;
-	private	int countryId;
+	private	Integer countryId;
 	private Date dateOfCreation;
 	
 	public Integer getId() {

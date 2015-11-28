@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import by.grodno.zagart.dataaccess.model.OrderList;
+import by.grodno.zagart.dataaccess.model.ProductList;
 
 /**
  * Mapper for OrderList model.
@@ -13,11 +13,11 @@ import by.grodno.zagart.dataaccess.model.OrderList;
  * @author zagart
  *
  */
-public class OrderListMapper implements RowMapper<OrderList> {
+public class ProductListMapper implements RowMapper<ProductList> {
 
 	@Override
-	public OrderList mapRow(ResultSet rs, int rowNum) throws SQLException {
-		OrderList list = new OrderList();
+	public ProductList mapRow(ResultSet rs, int rowNum) throws SQLException {
+		ProductList list = new ProductList();
 		list.setId(rs.getInt("id"));
 		list.setProductId(rs.getInt("product_id"));
 		list.setProductQuantity(rs.getInt("product_quantity"));

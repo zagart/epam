@@ -19,12 +19,10 @@ public class OrderMapper implements RowMapper<Order> {
 	@Override
 	public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Order order = new Order();
-		int id = rs.getInt("id");
 		Integer shoppingCartId = rs.getInt("shopping_cart_id");
 		Date dateOfOrder = rs.getDate("date_of_order");
 		Date dateOfDeliver = rs.getDate("date_of_deliver");
 		String orderStatus = rs.getString("order_status");
-		order.setId(id);
 		order.setShoppingCartId(shoppingCartId);
 		order.setDateOfOrder(dateOfOrder);
 		order.setDateOfDeliver(dateOfDeliver);

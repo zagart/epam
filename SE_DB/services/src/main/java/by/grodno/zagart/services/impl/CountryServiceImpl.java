@@ -1,5 +1,7 @@
 package by.grodno.zagart.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,20 +15,25 @@ public class CountryServiceImpl implements CountryService {
 	@Autowired
 	CountryDaoImpl countryDao;
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(CountryServiceImpl.class);
 	
 	@Override
-	public void deleteById(Integer id) {
+	public void deleteCountryById(Integer id) {
 		countryDao.deleteById(id);
+		LOGGER.info("Deleted country by id = {}.", id);
 	}
 
 	@Override
-	public Country getById(Integer id) {
+	public Country getCountryById(Integer id) {
+		LOGGER.info("Received country by id = {}.", id);
 		return countryDao.getById(id);
 	}
 
 	@Override
-	public void insert(Country country) {
-		countryDao.insert(country);
+	public Integer addCountry(Country country) {
+		int id = countryDao.insert(country);
+		LOGGER.info("Added new country with id = {}.", id);
+		return id;
 	}
 
 }

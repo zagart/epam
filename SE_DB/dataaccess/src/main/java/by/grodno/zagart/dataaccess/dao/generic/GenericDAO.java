@@ -6,6 +6,6 @@ public interface GenericDAO <TYPE> {
 	
 	void deleteById(Integer id);
 
-	void insert(TYPE typeObject);
+	Integer insert(TYPE typeObject);
 	
 }

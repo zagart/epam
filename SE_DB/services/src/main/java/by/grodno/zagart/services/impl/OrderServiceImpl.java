@@ -1,5 +1,7 @@
 package by.grodno.zagart.services.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import by.grodno.zagart.services.OrderService;
 @Service
 public class OrderServiceImpl implements OrderService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger("OrderLogger");
+
 	@Autowired
 	private OrderDaoImpl orderDao;
 
@@ -25,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public Order getOrderById(Integer id) {
+		LOGGER.info("Received order by id = {}.", id);
 		return orderDao.getById(id);
 	}
 
@@ -34,14 +39,17 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void deleteOrderById(Integer id) {
 		orderDao.deleteById(id);
+		LOGGER.info("Deleted order by id = {}).", id);
 	}
 
 	/**
 	 * Adding new order.
 	 */
 	@Override
-	public void insertNewOrder(Order order) {
-		orderDao.insert(order);
+	public Integer insertNewOrder(Order order) {
+		int id = orderDao.insert(order);
+		LOGGER.info("Added order with id = " + id);
+		return id;
 	}
 
 }

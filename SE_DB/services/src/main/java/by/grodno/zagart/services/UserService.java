@@ -8,6 +8,6 @@ public interface UserService {
 
 	User getUserById(Integer id);
 
-	void registerUser(String firstName, String lastName, String login, String email, String password, Integer countryId);
+	Integer registerUser(String firstName, String lastName, String login, String email, String password, Integer countryId);
 	
 }

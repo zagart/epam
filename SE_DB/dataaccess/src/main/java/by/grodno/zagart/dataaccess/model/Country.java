@@ -1,8 +1,5 @@
 package by.grodno.zagart.dataaccess.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Country {
 	
 	private int id;

@@ -26,7 +26,7 @@ public class CountryDaoImpl implements CountryDao {
 	 */
 	@Override
 	public Country getById(Integer id) {
-		return jdbc.queryForObject("SELECT * FROM country WHERE id = ?", new Object[] { id }, new CountryMapper());
+		return jdbc.queryForObject("SELECT * FROM country WHERE id = " + id, new CountryMapper());
 	}
 
 	/**
@@ -41,9 +41,10 @@ public class CountryDaoImpl implements CountryDao {
 	 * Method for adding new Country object into table.
 	 */
 	@Override
-	public void insert(Country country) {
-		jdbc.update("INSERT INTO country (id, name, iso_code) VALUES (?,?,?)", country.getId(), country.getName(),
-				country.getIsoCode());
+	public Integer insert(Country country) {
+		int id = jdbc.queryForObject("INSERT INTO country (name, iso_code) VALUES (?,?) RETURNING id",
+				new Object[] { country.getName(), country.getIsoCode() }, Integer.class);
+		return id;
 	}
 
 }

@@ -8,6 +8,6 @@ public interface OrderService {
 	
 	void deleteOrderById(Integer id);
 		
-	void insertNewOrder(Order order);
+	Integer insertNewOrder(Order order);
 	
 }

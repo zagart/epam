@@ -4,28 +4,28 @@ import java.math.BigDecimal;
 
 public class ShoppingCart {
 	
-	private long id;
-	private long userId;
-	private long orderListId;
+	private Integer id;
+	private Integer userId;
+	private Integer orderListId;
 	private BigDecimal totalTost;
 	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Long getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(Long userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public Long getProductListId() {
+	public Integer getOrderListId() {
 		return orderListId;
 	}
-	public void setProductListId(Long productListId) {
-		this.orderListId = productListId;
+	public void setOrderListId(Integer orderListId) {
+		this.orderListId = orderListId;
 	}
 	public BigDecimal getTotalTost() {
 		return totalTost;
@@ -33,5 +33,5 @@ public class ShoppingCart {
 	public void setTotalTost(BigDecimal totalTost) {
 		this.totalTost = totalTost;
 	}
-
+	
 }

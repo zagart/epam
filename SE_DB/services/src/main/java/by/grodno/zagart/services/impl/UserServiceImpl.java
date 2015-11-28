@@ -3,6 +3,8 @@ package by.grodno.zagart.services.impl;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +23,13 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDaoImpl userDao;
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
 	/**
 	 * Method for registering new user.
 	 */
 	@Override
-	public void registerUser(String firstName, String lastName, String login, String email, String password,
+	public Integer registerUser(String firstName, String lastName, String login, String email, String password,
 			Integer countryId) {
 		User user = new User();
 		user.setEmail(email);
@@ -37,8 +40,9 @@ public class UserServiceImpl implements UserService {
 		user.setBalance(new BigDecimal(0));
 		user.setDateOfCreation(new Date());
 		user.setCountryId(countryId);
-		userDao.insert(user);
-		// send email
+		int id = userDao.insert(user);
+		LOGGER.info("Registered new user with id = {}.", id);
+		return id;
 	}
 
 	/**
@@ -46,6 +50,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User getUserById(Integer id) {
+		LOGGER.info("Received used by id = {}.", id);
 		return userDao.getById(id);
 	}
 
@@ -55,6 +60,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUserById(Integer id) {
 		userDao.deleteById(id);
+		LOGGER.info("Deleted user by id = {}.", id);
 	}
 
 }

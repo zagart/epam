@@ -20,12 +20,12 @@ public class CountryServiceImpl implements CountryService {
 	@Override
 	public void deleteCountryById(Integer id) {
 		countryDao.deleteById(id);
-		LOGGER.info("Deleted country by id = {}.", id);
+		LOGGER.info("Deleted country with id = {}.", id);
 	}
 
 	@Override
 	public Country getCountryById(Integer id) {
-		LOGGER.info("Received country by id = {}.", id);
+		LOGGER.info("Received country with id = {}.", id);
 		return countryDao.getById(id);
 	}
 

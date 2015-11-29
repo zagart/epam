@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 	 */
 	@Override
 	public Order getOrderById(Integer id) {
-		LOGGER.info("Received order by id = {}.", id);
+		LOGGER.info("Order with id = {} received.", id);
 		return orderDao.getById(id);
 	}
 
@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void deleteOrderById(Integer id) {
 		orderDao.deleteById(id);
-		LOGGER.info("Deleted order by id = {}).", id);
+		LOGGER.info("Deleted order with id = {}).", id);
 	}
 
 	/**

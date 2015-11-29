@@ -2,10 +2,13 @@ package by.grodno.zagart.services;
 
 import java.util.Random;
 
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import by.grodno.zagart.dataaccess.model.User;
 import by.grodno.zagart.services.impl.CountryServiceImpl;
 import by.grodno.zagart.services.impl.UserServiceImpl;
 
@@ -35,7 +38,10 @@ public class UserServiceTest extends AbstractSpringClass {
 		String password = RandomStringUtils.random(rnd.nextInt(30));
 		id = userService.registerUser(firstName, lastName, login, email, password,
 				countryService.addCountry(CountryServiceTest.randomCountry()));
-		getUserByIdTest();
+		User testUser = getUserByIdTest();
+		
+		Assert.assertNotNull(testUser);
+		
 		deleteUserByIdTest();
 	}
 
@@ -43,8 +49,8 @@ public class UserServiceTest extends AbstractSpringClass {
 		userService.deleteUserById(id);
 	}
 
-	public void getUserByIdTest() {
-		userService.getUserById(id);
+	public User getUserByIdTest() {
+		return userService.getUserById(id);
 	}
 
 }

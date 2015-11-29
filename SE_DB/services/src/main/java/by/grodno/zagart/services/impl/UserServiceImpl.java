@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User getUserById(Integer id) {
-		LOGGER.info("Received used by id = {}.", id);
+		LOGGER.info("Received used with id = {}.", id);
 		return userDao.getById(id);
 	}
 
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUserById(Integer id) {
 		userDao.deleteById(id);
-		LOGGER.info("Deleted user by id = {}.", id);
+		LOGGER.info("Deleted user by with id = {}.", id);
 	}
 
 }

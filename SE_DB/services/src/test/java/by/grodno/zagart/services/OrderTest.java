@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,10 +24,20 @@ public class OrderTest extends AbstractSpringClass {
 	@Autowired
 	OrderServiceImpl orderService;
 
-	private static int id;
+	private int id;
 
 	@Test
 	public void addNewOrder() {
+		Order order = randomOrder();
+		id = orderService.insertNewOrder(order);
+		Order testOrder = getOrderById();
+
+		Assert.assertNotNull(testOrder);
+
+		deleteOrder();
+	}
+
+	public static Order randomOrder() {
 		Order order = new Order();
 		Integer shoppingCartId = null;
 		Date dateOfOrder = new Date();
@@ -36,17 +47,15 @@ public class OrderTest extends AbstractSpringClass {
 		order.setDateOfDeliver(dateOfDeliver);
 		order.setOrderStatus(orderStatus);
 		order.setShoppingCartId(shoppingCartId);
-		id = orderService.insertNewOrder(order);
-		getOrderById();
-		deleteOrder();
+		return order;
 	}
 
 	public void deleteOrder() {
 		orderService.deleteOrderById(id);
 	}
 
-	public void getOrderById() {
-		orderService.getOrderById(id);
+	public Order getOrderById() {
+		return orderService.getOrderById(id);
 	}
 
 }

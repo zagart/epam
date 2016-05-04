@@ -7,6 +7,12 @@ import org.springframework.jdbc.core.RowMapper;
 
 import by.grodno.zagart.dataaccess.model.Product;
 
+/**
+ * Mapper for product model.
+ * 
+ * @author zagart
+ *
+ */
 public class ProductMapper implements RowMapper<Product> {
 
 	@Override
@@ -16,10 +22,7 @@ public class ProductMapper implements RowMapper<Product> {
 		product.setName(rs.getString("name"));
 		product.setDescription(rs.getString("description"));
 		product.setCost(rs.getBigDecimal("cost"));
-		product.setShopId(rs.getInt("shop_id"));
-		product.setDeliverCost(rs.getBigDecimal("deliver_cost"));
-		product.setProductsQuantityLeft(rs.getInt("product_quantity_left"));
-		product.setRating(rs.getShort("rating"));
+		product.setRating(rs.getInt("rating"));
 		return product;
 	}
 

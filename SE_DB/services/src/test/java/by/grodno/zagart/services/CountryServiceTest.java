@@ -29,7 +29,8 @@ public class CountryServiceTest extends AbstractSpringClass {
 		Country testCountry = countryGetByIdTest();
 		
 		Assert.assertNotNull(testCountry);
-		
+		Assert.assertFalse(country.equals(testCountry));
+	
 		countryDeleteByIdTest();
 	}
 

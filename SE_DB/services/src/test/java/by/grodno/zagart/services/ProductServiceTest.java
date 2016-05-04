@@ -23,11 +23,12 @@ public class ProductServiceTest extends AbstractSpringClass {
 	public void addNewProductTest() {
 		Product product = randomProduct();
 		id = productService.addNewProduct(product);
-		Product testProduct = getProductByIdTest();
+		Product testProduct = productService.getProductById(id);
 		
 		Assert.assertNotNull(testProduct);
+		Assert.assertEquals(product, testProduct);
 		
-		deleteProductByIdTest();
+		productService.deleteProductById(id);
 	}
 
 	public static Product randomProduct() {
@@ -36,19 +37,7 @@ public class ProductServiceTest extends AbstractSpringClass {
 		product.setName(RandomStringUtils.random(rnd.nextInt(100)));
 		product.setDescription(RandomStringUtils.random(rnd.nextInt(200)));
 		product.setCost(new BigDecimal((double)(rnd.nextInt(1000) + rnd.nextDouble())));
-		product.setShopId(null);
-		product.setDeliverCost(new BigDecimal((double)(rnd.nextInt(100) + rnd.nextDouble())));
-		product.setProductsQuantityLeft(Math.abs(rnd.nextInt(1000)));
-		product.setRating((short) rnd.nextInt(5));
 		return product;
-	}
-
-	public Product getProductByIdTest() {
-		return productService.getProductById(id);
-	}
-
-	public void deleteProductByIdTest() {
-		productService.deleteProductById(id);
 	}
 
 }

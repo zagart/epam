@@ -39,9 +39,6 @@ public class UserServiceTest extends AbstractSpringClass {
 		id = userService.registerUser(firstName, lastName, login, email, password,
 				countryService.addCountry(CountryServiceTest.randomCountry()));
 		User testUser = getUserByIdTest();
-		
-		Assert.assertNotNull(testUser);
-		
 		deleteUserByIdTest();
 	}
 
